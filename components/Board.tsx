@@ -38,16 +38,17 @@ const Board: React.FC = (): JSX.Element => {
 	return (
 		<section className="board">
 			{board.map((el, key) => (
-				<div
-					key={key + Date.now()}
-					className={`item ${el?.target ? "xl" : ""}`}
-				>
+				<div key={key} className={`item ${el?.target ? "xl" : ""}`}>
 					{el?.target}
 					{el.shown && <img src={el.image} alt="Random" className="item" />}
 					<div className="tokens">
 						{teams.map((team) => {
 							if (team.boardPosition === el.boardPosition)
-								<div className="token" key={key + Date.now()}>
+								<div
+									className="token"
+									key={key}
+									style={`--team-colour: ${team.colour}` as CSSProperties}
+								>
 									{team.name[0] + team.name[Math.floor(team.name.length / 2)]}
 								</div>;
 						})}
@@ -58,7 +59,7 @@ const Board: React.FC = (): JSX.Element => {
 			<div className="leaderboard">
 				<h2 className="subtitle">Leaderboard</h2>
 				{teams.map((team, key) => (
-					<div className="row" key={key + Date.now()}>
+					<div className="row" key={key}>
 						<p className="name">{team.name}</p>
 						<p className="board-pos">{team.boardPosition}</p>
 						<button className="up" onClick={() => updateTeamCount("inc", team)}>
