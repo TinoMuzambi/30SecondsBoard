@@ -31,8 +31,8 @@ const Home = () => {
 
 		if (errors) return alert("Please choose unique names");
 
-		if (teams?.length > 0) router.push("/board");
-		else alert("Please create some teams before starting the game.");
+		if (teams?.length > 1) router.push("/board");
+		else alert("Please create at least two teams before starting the game.");
 	};
 
 	return (

@@ -6,9 +6,6 @@ export const BASE_URL =
 		: "http://localhost:3000";
 
 export const isUnique = (name: string, teams: Team[]): boolean => {
-	let unique = true;
-	teams.forEach((team) => {
-		if (team.name === name) unique = false;
-	});
-	return unique;
+	const noOccurrences = teams.filter((team) => team.name === name);
+	return noOccurrences.length <= 1;
 };

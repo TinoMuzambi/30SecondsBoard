@@ -32,13 +32,15 @@ const TeamComp: React.FC<TeamProps> = ({ num }): JSX.Element => {
 			if (setTeams) setTeams(newTeams);
 			localStorage.setItem("30-seconds-game", JSON.stringify(newTeams));
 		} else {
+			if (teams.length > 1) {
+				return alert("Please choose a unique name");
+			}
 			const newTeams = [...teams];
 			for (let i = 0; i < teams.length; i++) {
 				if (newTeams[i].name === name) newTeams[i].colour = colour;
 			}
-			if (teams.length > 1) {
-				return alert("Please choose a unique name");
-			}
+			if (setTeams) setTeams(newTeams);
+			localStorage.setItem("30-seconds-game", JSON.stringify(newTeams));
 		}
 	};
 
