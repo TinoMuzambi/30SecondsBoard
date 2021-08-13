@@ -4,7 +4,7 @@ import AppReducer from "./AppReducer";
 import { ContextProps, AppProviderProps, Team } from "../interfaces";
 
 const initialState: ContextProps = {
-	teams: null,
+	teams: [],
 };
 
 export const AppContext = createContext<ContextProps>(initialState);
