@@ -62,8 +62,11 @@
 		padding: 1rem;
 
 		.row {
-			@include flexAllRow;
-			justify-content: space-between;
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			align-items: center;
+			justify-items: center;
+			gap: 0.5rem;
 			margin: 0.5rem 0;
 		}
 
