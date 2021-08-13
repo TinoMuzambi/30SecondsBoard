@@ -41,8 +41,8 @@ const Board: React.FC = (): JSX.Element => {
 		<section className="board">
 			{board.map((el, key) =>
 				el.shown ? (
-					<div className="item">
-						<img key={key} src={el.image} alt="Random" className="item" />
+					<div className="item" key={key}>
+						<img src={el.image} alt="Random" className="item" />
 						<div className="tokens">
 							{teams.map((team, key) => {
 								if (team.boardPosition === el.boardPosition) {
@@ -66,8 +66,8 @@ const Board: React.FC = (): JSX.Element => {
 
 			<div className="leaderboard">
 				<h2 className="subtitle">Leaderboard</h2>
-				{teams.map((team) => (
-					<div className="row">
+				{teams.map((team, key) => (
+					<div className="row" key={key}>
 						<p className="name">{team.name}</p>
 						<p className="board-pos">{team.boardPosition}</p>
 						<button className="up" onClick={() => updateTeamCount("inc", team)}>
