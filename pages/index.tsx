@@ -27,7 +27,7 @@ const Home = () => {
 				</div>
 				{[...Array(noTeams)].map((item, key) => (
 					<div className="team" key={key}>
-						<Team key={key} teams={teams} setTeams={setTeams} />
+						<Team num={key} teams={teams} setTeams={setTeams} />
 					</div>
 				))}
 				<input type="submit" value="Start Game" />

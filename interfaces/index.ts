@@ -13,7 +13,7 @@ export interface MetaProps {
 }
 
 export interface TeamProps {
-	key: number;
+	num: number;
 	teams: any[];
 	setTeams: Dispatch<SetStateAction<any[]>>;
 }
