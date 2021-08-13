@@ -12,9 +12,9 @@ const Board: React.FC = (): JSX.Element => {
 		for (let i = 0; i < teams.length; i++) {
 			if (teams[i].name === team.name) {
 				if (type === "inc") {
-					newTeams[i].boardPosition++;
+					if (newTeams[i].boardPosition !== 34) newTeams[i].boardPosition++;
 				} else {
-					newTeams[i].boardPosition--;
+					if (newTeams[i].boardPosition !== 0) newTeams[i].boardPosition--;
 				}
 			}
 		}
