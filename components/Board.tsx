@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { CSSProperties, useContext, useEffect } from "react";
 
 import { AppContext } from "../context/AppContext";
 import { board } from "../data/board";
@@ -35,8 +35,12 @@ const Board: React.FC = (): JSX.Element => {
 		localStorage.setItem("30-seconds-game", JSON.stringify(newTeams));
 	};
 
-	const tokenGenerator = (team: Team, key: number) => (
-		<div className="token" key={key}>
+	const tokenGenerator = (team: Team, key: number, colour: string) => (
+		<div
+			className="token"
+			key={key}
+			style={`--team-colour: ${colour}` as CSSProperties}
+		>
 			{team.name[0] + team.name[Math.floor(team.name.length / 2)]}
 		</div>
 	);
@@ -50,7 +54,7 @@ const Board: React.FC = (): JSX.Element => {
 						<div className="tokens">
 							{teams.map((team, key) => {
 								if (team.boardPosition === el.boardPosition) {
-									return tokenGenerator(team, key);
+									return tokenGenerator(team, key, team.colour);
 								}
 							})}
 						</div>
@@ -61,7 +65,7 @@ const Board: React.FC = (): JSX.Element => {
 						<div className="tokens">
 							{teams.map((team) => {
 								if (team.boardPosition === el.boardPosition)
-									return tokenGenerator(team, key);
+									return tokenGenerator(team, key, team.colour);
 							})}
 						</div>
 					</div>
