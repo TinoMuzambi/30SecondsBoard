@@ -1,10 +1,13 @@
-import { useRouter } from "next/dist/client/router";
-import { FormEventHandler, useState } from "react";
+import { useRouter } from "next/router";
+import { FormEventHandler, useContext, useState } from "react";
+
 import Team from "../components/Team";
+import { AppContext } from "../context/AppContext";
 
 const Home = () => {
 	const [noTeams, setNoTeams] = useState(0);
-	const [teams, setTeams] = useState([]);
+
+	const { teams } = useContext(AppContext);
 
 	const router = useRouter();
 
@@ -39,7 +42,7 @@ const Home = () => {
 				</div>
 				{[...Array(noTeams)].map((item, key) => (
 					<div className="team" key={key}>
-						<Team num={key} teams={teams} setTeams={setTeams} />
+						<Team num={key} />
 					</div>
 				))}
 				<div className="input-group">
