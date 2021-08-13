@@ -44,7 +44,7 @@ const Board: React.FC = (): JSX.Element => {
 						<img src={el.image} alt="Random" className="board-image" />
 					)}
 					<div className="tokens">
-						{teams.map((team) => {
+						{teams.map((team, key) => {
 							if (team.boardPosition === el.boardPosition)
 								return (
 									<div
