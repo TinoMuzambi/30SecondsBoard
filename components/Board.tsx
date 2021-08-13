@@ -51,26 +51,21 @@ const Board: React.FC = (): JSX.Element => {
 
 			<div className="leaderboard">
 				<h2 className="subtitle">Leaderboard</h2>
-				{teams
-					.sort((a, b) => (a.boardPosition < b.boardPosition ? 1 : -1))
-					.map((team) => (
-						<div className="row">
-							<p className="name">{team.name}</p>
-							<p className="board-pos">{team.boardPosition}</p>
-							<button
-								className="up"
-								onClick={() => updateTeamCount("inc", team)}
-							>
-								<span>👆</span>
-							</button>
-							<button
-								className="down"
-								onClick={() => updateTeamCount("dec", team)}
-							>
-								<span>👇</span>
-							</button>
-						</div>
-					))}
+				{teams.map((team) => (
+					<div className="row">
+						<p className="name">{team.name}</p>
+						<p className="board-pos">{team.boardPosition}</p>
+						<button className="up" onClick={() => updateTeamCount("inc", team)}>
+							<span>👆</span>
+						</button>
+						<button
+							className="down"
+							onClick={() => updateTeamCount("dec", team)}
+						>
+							<span>👇</span>
+						</button>
+					</div>
+				))}
 			</div>
 		</section>
 	);
