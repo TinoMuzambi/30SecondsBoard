@@ -8,10 +8,12 @@ const TeamComp: React.FC<TeamProps> = ({ num }): JSX.Element => {
 	const { teams, setTeams } = useContext(AppContext);
 
 	useEffect(() => {
-		const teamsObj = JSON.parse(localStorage.getItem("30-seconds-game"));
+		const teamsObj = JSON.parse(
+			localStorage.getItem("30-seconds-game") as string
+		);
 		if (teamsObj) {
 			const lsTeams: Team[] = teamsObj;
-			setTeams(lsTeams);
+			if (setTeams) setTeams(lsTeams);
 		}
 	}, []);
 
@@ -35,7 +37,7 @@ const TeamComp: React.FC<TeamProps> = ({ num }): JSX.Element => {
 								...teams,
 								{ name: e.target.value, boardPosition: 0 },
 							];
-							setTeams(newTeams);
+							if (setTeams) setTeams(newTeams);
 							localStorage.setItem("30-seconds-game", JSON.stringify(newTeams));
 						}
 					}}
