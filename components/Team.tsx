@@ -5,7 +5,7 @@ import { isUnique } from "../utils";
 
 const TeamComp: React.FC<TeamProps> = ({ num }): JSX.Element => {
 	const [teamName, setTeamName] = useState("");
-	const [teamColour, setTeamColour] = useState("#000");
+	const [teamColour, setTeamColour] = useState("#000000");
 
 	const { teams, setTeams } = useContext(AppContext);
 
@@ -24,13 +24,11 @@ const TeamComp: React.FC<TeamProps> = ({ num }): JSX.Element => {
 		boardPosition: number,
 		colour: string
 	) => {
-		let newTeams: Team[] = [];
-		if (isUnique(name, teams)) {
-			newTeams = [
-				...teams,
-				{ name: name, boardPosition: boardPosition, colour: colour },
-			];
-		} else {
+		let newTeams: Team[] = [
+			...teams,
+			{ name: name, boardPosition: boardPosition, colour: colour },
+		];
+		if (!isUnique(name, newTeams)) {
 			newTeams = [...teams];
 			for (let i = 0; i < teams.length; i++) {
 				if (newTeams[i].name === name) newTeams[i].colour = colour;
@@ -56,7 +54,7 @@ const TeamComp: React.FC<TeamProps> = ({ num }): JSX.Element => {
 					required
 					onBlur={(e) => {
 						if (e.target.value) {
-							updateContext(e.target.value, 0, teamColour);
+							updateContext(teamName, 0, teamColour);
 						}
 					}}
 				/>
@@ -71,8 +69,8 @@ const TeamComp: React.FC<TeamProps> = ({ num }): JSX.Element => {
 						required
 						value={teamColour}
 						onChange={(e) => setTeamColour(e.target.value)}
-						onBlur={(e) => {
-							updateContext(teamName, 0, e.target.value);
+						onBlur={() => {
+							updateContext(teamName, 0, teamColour);
 						}}
 					/>
 				</div>
