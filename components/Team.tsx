@@ -18,6 +18,19 @@ const TeamComp: React.FC<TeamProps> = ({ num }): JSX.Element => {
 		}
 	}, []);
 
+	const updateContext = (
+		name: string,
+		boardPosition: number,
+		colour: string
+	) => {
+		const newTeams = [
+			...teams,
+			{ name: name, boardPosition: boardPosition, colour: colour },
+		];
+		if (setTeams) setTeams(newTeams);
+		localStorage.setItem("30-seconds-game", JSON.stringify(newTeams));
+	};
+
 	return (
 		<>
 			<h2 className="name">Team #{num + 1} details:</h2>
@@ -34,12 +47,7 @@ const TeamComp: React.FC<TeamProps> = ({ num }): JSX.Element => {
 					required
 					onBlur={(e) => {
 						if (e.target.value) {
-							const newTeams = [
-								...teams,
-								{ name: e.target.value, boardPosition: 0 },
-							];
-							if (setTeams) setTeams(newTeams);
-							localStorage.setItem("30-seconds-game", JSON.stringify(newTeams));
+							updateContext(e.target.value, 0, teamColour);
 						}
 					}}
 				/>
@@ -54,6 +62,9 @@ const TeamComp: React.FC<TeamProps> = ({ num }): JSX.Element => {
 						required
 						value={teamColour}
 						onChange={(e) => setTeamColour(e.target.value)}
+						onBlur={(e) => {
+							updateContext(e.target.value, 0, teamColour);
+						}}
 					/>
 				</div>
 				<div className="line"></div>

@@ -39,6 +39,7 @@ export interface Question {
 
 export interface Team {
 	name: string;
+	colour: string;
 	boardPosition?: number;
 }
 
