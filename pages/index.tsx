@@ -5,11 +5,13 @@ const Home = () => {
 		<main className="main">
 			<h1 className="title">30 Seconds Game</h1>
 			<section className="board">
-				{board.map((el, key) => (
-					<div key={key}>
-						<img src={el.image} alt="Random" />
-					</div>
-				))}
+				{board.map((el, key) =>
+					el.shown ? (
+						<img key={key} src={el.image} alt="Random" className="item" />
+					) : (
+						<div key={key} className="item"></div>
+					)
+				)}
 			</section>
 		</main>
 	);
