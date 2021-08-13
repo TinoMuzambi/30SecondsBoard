@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import { AppContext } from "../context/AppContext";
 import { board } from "../data/board";
@@ -6,6 +6,14 @@ import { Team } from "../interfaces";
 
 const Board: React.FC = (): JSX.Element => {
 	const { teams, setTeams } = useContext(AppContext);
+
+	useEffect(() => {
+		const teamsObj = JSON.parse(localStorage.getItem("30-seconds-game"));
+		if (teamsObj) {
+			const lsTeams: Team[] = teamsObj;
+			setTeams(lsTeams);
+		}
+	}, []);
 
 	const updateTeamCount = (type: "inc" | "dec", team: Team) => {
 		let newTeams: Team[] = [...teams];
@@ -20,6 +28,7 @@ const Board: React.FC = (): JSX.Element => {
 		}
 
 		setTeams(newTeams);
+		localStorage.setItem("30-seconds-game", JSON.stringify(newTeams));
 	};
 
 	return (
