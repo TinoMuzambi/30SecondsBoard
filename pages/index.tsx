@@ -24,6 +24,7 @@ const Home = () => {
 						max={10}
 						value={noTeams}
 						onChange={(e) => setNoTeams(Number.parseInt(e.target.value))}
+						onWheel={(e) => e.currentTarget.blur()}
 					/>
 				</div>
 				{[...Array(noTeams)].map((item, key) => (
