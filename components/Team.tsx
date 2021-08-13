@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../context/AppContext";
 import { Team, TeamProps } from "../interfaces";
+import { isUnique } from "../utils";
 
 const TeamComp: React.FC<TeamProps> = ({ num }): JSX.Element => {
 	const [teamName, setTeamName] = useState("");
@@ -23,12 +24,16 @@ const TeamComp: React.FC<TeamProps> = ({ num }): JSX.Element => {
 		boardPosition: number,
 		colour: string
 	) => {
-		const newTeams = [
-			...teams,
-			{ name: name, boardPosition: boardPosition, colour: colour },
-		];
-		if (setTeams) setTeams(newTeams);
-		localStorage.setItem("30-seconds-game", JSON.stringify(newTeams));
+		if (isUnique(name, teams)) {
+			const newTeams = [
+				...teams,
+				{ name: name, boardPosition: boardPosition, colour: colour },
+			];
+			if (setTeams) setTeams(newTeams);
+			localStorage.setItem("30-seconds-game", JSON.stringify(newTeams));
+		} else {
+			alert("Please choose a unique team name");
+		}
 	};
 
 	return (
@@ -45,11 +50,11 @@ const TeamComp: React.FC<TeamProps> = ({ num }): JSX.Element => {
 					value={teamName}
 					onChange={(e) => setTeamName(e.target.value)}
 					required
-					onBlur={(e) => {
-						if (e.target.value) {
-							updateContext(e.target.value, 0, teamColour);
-						}
-					}}
+					// onBlur={(e) => {
+					// 	if (e.target.value) {
+					// 		updateContext(e.target.value, 0, teamColour);
+					// 	}
+					// }}
 				/>
 				<div className="input-group">
 					<label htmlFor="colour" className="label">
@@ -63,7 +68,7 @@ const TeamComp: React.FC<TeamProps> = ({ num }): JSX.Element => {
 						value={teamColour}
 						onChange={(e) => setTeamColour(e.target.value)}
 						onBlur={(e) => {
-							updateContext(e.target.value, 0, teamColour);
+							updateContext(teamName, 0, e.target.value);
 						}}
 					/>
 				</div>
