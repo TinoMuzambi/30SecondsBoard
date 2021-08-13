@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export interface WrapperProps {
 	children: JSX.Element | JSX.Element[];
 }
@@ -8,6 +10,12 @@ export interface MetaProps {
 	keywords?: string;
 	url?: string;
 	image?: string;
+}
+
+export interface TeamProps {
+	key: number;
+	teams: any[];
+	setTeams: Dispatch<SetStateAction<any[]>>;
 }
 
 export interface BoardItem {
