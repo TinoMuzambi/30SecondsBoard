@@ -65,7 +65,14 @@ const Board: React.FC = (): JSX.Element => {
 				<h2 className="subtitle">Leaderboard</h2>
 				{teams.map((team, key) => (
 					<div className="row" key={key}>
-						<p className="name">{team.name}</p>
+						<p className="name">
+							{team.name}
+							<style jsx>
+								{`
+									--team-colour: ${team.colour};
+								`}
+							</style>
+						</p>
 						<p className="board-pos">{team.boardPosition}</p>
 						<button className="up" onClick={() => updateTeamCount("inc", team)}>
 							+1
