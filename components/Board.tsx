@@ -46,13 +46,15 @@ const Board: React.FC = (): JSX.Element => {
 					<div className="tokens">
 						{teams.map((team) => {
 							if (team.boardPosition === el.boardPosition)
-								<div
-									className="token"
-									key={key}
-									style={`--team-colour: ${team.colour}` as CSSProperties}
-								>
-									{team.name[0] + team.name[Math.floor(team.name.length / 2)]}
-								</div>;
+								return (
+									<div
+										className="token"
+										key={key}
+										// style={`--team-colour: ${team.colour}` as CSSProperties}
+									>
+										{team.name[0] + team.name[Math.floor(team.name.length / 2)]}
+									</div>
+								);
 						})}
 					</div>
 				</div>
