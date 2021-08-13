@@ -40,7 +40,12 @@ const Board: React.FC = (): JSX.Element => {
 						<div className="tokens">
 							{teams.map((team) => {
 								if (team.boardPosition === el.boardPosition) {
-									return <div className="token">{team.name}</div>;
+									return (
+										<div className="token">
+											{team.name[0] +
+												team.name[Math.floor(team.name.length) / 2]}
+										</div>
+									);
 								}
 							})}
 						</div>
@@ -51,7 +56,12 @@ const Board: React.FC = (): JSX.Element => {
 						<div className="tokens">
 							{teams.map((team) => {
 								if (team.boardPosition === el.boardPosition)
-									return <div className="token">{team.name}</div>;
+									return (
+										<div className="token">
+											{team.name[0] +
+												team.name[Math.floor(team.name.length) / 2]}
+										</div>
+									);
 							})}
 						</div>
 					</div>
