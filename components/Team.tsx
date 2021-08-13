@@ -5,7 +5,7 @@ import { isUnique } from "../utils";
 
 const TeamComp: React.FC<TeamProps> = ({ num }): JSX.Element => {
 	const [teamName, setTeamName] = useState("");
-	const [teamColour, setTeamColour] = useState("");
+	const [teamColour, setTeamColour] = useState("#000");
 
 	const { teams, setTeams } = useContext(AppContext);
 
@@ -52,11 +52,11 @@ const TeamComp: React.FC<TeamProps> = ({ num }): JSX.Element => {
 					value={teamName}
 					onChange={(e) => setTeamName(e.target.value)}
 					required
-					// onBlur={(e) => {
-					// 	if (e.target.value) {
-					// 		updateContext(e.target.value, 0, teamColour);
-					// 	}
-					// }}
+					onBlur={(e) => {
+						if (e.target.value) {
+							updateContext(e.target.value, 0, teamColour);
+						}
+					}}
 				/>
 				<div className="input-group">
 					<label htmlFor="colour" className="label">
