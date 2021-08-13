@@ -3,6 +3,7 @@ import { FormEventHandler, useContext, useEffect, useState } from "react";
 
 import Team from "../components/Team";
 import { AppContext } from "../context/AppContext";
+import { isUnique } from "../utils";
 
 const Home = () => {
 	const [noTeams, setNoTeams] = useState(0);
@@ -22,6 +23,13 @@ const Home = () => {
 
 	const submitHandler: FormEventHandler<HTMLFormElement> = (e) => {
 		e.preventDefault();
+
+		let errors = false;
+		teams.forEach((team) => {
+			if (!isUnique(team.name, teams)) errors = true;
+		});
+
+		if (errors) return alert("Please choose unique names");
 
 		if (teams?.length > 0) router.push("/board");
 		else alert("Please create some teams before starting the game.");
