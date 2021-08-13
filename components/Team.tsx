@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AppContext } from "../context/AppContext";
 import { TeamProps } from "../interfaces";
 
-const Team: React.FC<TeamProps> = ({ num, teams, setTeams }): JSX.Element => {
+const Team: React.FC<TeamProps> = ({ num }): JSX.Element => {
 	const [teamName, setTeamName] = useState("");
+
+	const { teams, setTeams } = useContext(AppContext);
 
 	return (
 		<>
