@@ -22,7 +22,8 @@ const Team: React.FC<TeamProps> = ({ num }): JSX.Element => {
 					onChange={(e) => setTeamName(e.target.value)}
 					required
 					onBlur={(e) => {
-						if (e.target.value) setTeams([...teams, { name: e.target.value }]);
+						if (e.target.value)
+							setTeams([...teams, { name: e.target.value, boardPosition: 0 }]);
 					}}
 				/>
 				<div className="line"></div>

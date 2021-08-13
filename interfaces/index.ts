@@ -31,6 +31,7 @@ export interface BoardItem {
 	image: string;
 	shown: boolean;
 	target?: "start" | "finish";
+	boardPosition?: number;
 }
 
 export interface Question {
@@ -40,6 +41,7 @@ export interface Question {
 
 export interface Team {
 	name: string;
+	boardPosition?: number;
 }
 
 export type State = {
