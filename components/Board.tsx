@@ -38,7 +38,7 @@ const Board: React.FC = (): JSX.Element => {
 	const tokenGenerator = (team: Team, key: number, colour: string) => (
 		<div
 			className="token"
-			key={key}
+			key={key + Date.now()}
 			style={`--team-colour: ${colour}` as CSSProperties}
 		>
 			{team.name[0] + team.name[Math.floor(team.name.length / 2)]}
@@ -47,35 +47,26 @@ const Board: React.FC = (): JSX.Element => {
 
 	return (
 		<section className="board">
-			{board.map((el, key) =>
-				el.shown ? (
-					<div className="item" key={key}>
-						<img src={el.image} alt="Random" className="item" />
-						<div className="tokens">
-							{teams.map((team, key) => {
-								if (team.boardPosition === el.boardPosition) {
-									return tokenGenerator(team, key, team.colour);
-								}
-							})}
-						</div>
+			{board.map((el, key) => (
+				<div
+					key={key + Date.now()}
+					className={`item ${el?.target ? "xl" : ""}`}
+				>
+					{el?.target}
+					{el.shown && <img src={el.image} alt="Random" className="item" />}
+					<div className="tokens">
+						{teams.map((team) => {
+							if (team.boardPosition === el.boardPosition)
+								return tokenGenerator(team, key, team.colour);
+						})}
 					</div>
-				) : (
-					<div key={key} className={`item ${el?.target ? "xl" : ""}`}>
-						{el?.target}
-						<div className="tokens">
-							{teams.map((team) => {
-								if (team.boardPosition === el.boardPosition)
-									return tokenGenerator(team, key, team.colour);
-							})}
-						</div>
-					</div>
-				)
-			)}
+				</div>
+			))}
 
 			<div className="leaderboard">
 				<h2 className="subtitle">Leaderboard</h2>
 				{teams.map((team, key) => (
-					<div className="row" key={key}>
+					<div className="row" key={key + Date.now()}>
 						<p className="name">{team.name}</p>
 						<p className="board-pos">{team.boardPosition}</p>
 						<button className="up" onClick={() => updateTeamCount("inc", team)}>
