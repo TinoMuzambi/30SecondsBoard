@@ -1,18 +1,11 @@
-const Home = () => {
-	function fillArray(value, len) {
-		if (len == 0) return [];
-		var a = [value];
-		while (a.length * 2 <= len) a = a.concat(a);
-		if (a.length < len) a = a.concat(a.slice(0, len - a.length));
-		return a;
-	}
+import { board } from "../data/board";
 
-	const images = fillArray({ image: "https://unsplash.it/100" }, 63);
+const Home = () => {
 	return (
 		<main className="main">
 			<h1 className="title">30 Seconds Game</h1>
 			<section className="board">
-				{images.map((el, key) => (
+				{board.map((el, key) => (
 					<div key={key}>
 						<img src={el.image} alt="Random" />
 					</div>

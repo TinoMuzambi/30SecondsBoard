@@ -1,0 +1,12 @@
+.main {
+	background: black;
+	color: white;
+	padding: 2rem 5%;
+
+	.board {
+		display: grid;
+		grid-template-columns: repeat(9, 1fr);
+		grid-template-rows: repeat(7, 1fr);
+		margin: 2rem auto;
+	}
+}

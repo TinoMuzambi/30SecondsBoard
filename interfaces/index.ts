@@ -9,3 +9,8 @@ export interface MetaProps {
 	url?: string;
 	image?: string;
 }
+
+export interface BoardItem {
+	image: string;
+	shown: boolean;
+}
