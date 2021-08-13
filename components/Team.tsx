@@ -4,6 +4,7 @@ import { Team, TeamProps } from "../interfaces";
 
 const TeamComp: React.FC<TeamProps> = ({ num }): JSX.Element => {
 	const [teamName, setTeamName] = useState("");
+	const [teamColour, setTeamColour] = useState("");
 
 	const { teams, setTeams } = useContext(AppContext);
 
@@ -42,6 +43,19 @@ const TeamComp: React.FC<TeamProps> = ({ num }): JSX.Element => {
 						}
 					}}
 				/>
+				<div className="input-group">
+					<label htmlFor="colour" className="label">
+						Choose a team colour:
+					</label>
+					<input
+						type="color"
+						id="colour"
+						className="input colour"
+						required
+						value={teamColour}
+						onChange={(e) => setTeamColour(e.target.value)}
+					/>
+				</div>
 				<div className="line"></div>
 			</div>
 		</>
