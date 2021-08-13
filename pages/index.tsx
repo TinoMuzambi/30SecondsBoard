@@ -2,6 +2,8 @@ import { useState } from "react";
 
 const Home = () => {
 	const [noTeams, setNoTeams] = useState(0);
+	const [teamName, setTeamName] = useState("");
+	const [teams, setTeams] = useState([]);
 
 	return (
 		<main className="main">
@@ -24,10 +26,23 @@ const Home = () => {
 					/>
 				</div>
 				{[...Array(noTeams)].map((item, key) => (
-					<div className="team">
+					<div className="team" key={key}>
+						<h2 className="name">Team #{key + 1} details:</h2>
 						<div className="input-group">
-							<label htmlFor="" className="label"></label>
-							<input type="text" className="input" />
+							<label htmlFor="name" className="label">
+								Team Name
+							</label>
+							<input
+								type="text"
+								className="input"
+								id="name"
+								value={teamName}
+								onChange={(e) => setTeamName(e.target.value)}
+								onBlur={(e) => {
+									if (e.target.value)
+										setTeams([...teams, { name: e.target.value }]);
+								}}
+							/>
 						</div>
 						<div className="input-group">
 							<label htmlFor="" className="label"></label>
@@ -35,6 +50,7 @@ const Home = () => {
 						</div>
 					</div>
 				))}
+				<input type="submit" value="Start Game" />
 			</form>
 		</main>
 	);
