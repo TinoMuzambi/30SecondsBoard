@@ -8,10 +8,12 @@ const Board: React.FC = (): JSX.Element => {
 	const { teams, setTeams } = useContext(AppContext);
 
 	useEffect(() => {
-		const teamsObj = JSON.parse(localStorage.getItem("30-seconds-game"));
+		const teamsObj = JSON.parse(
+			localStorage.getItem("30-seconds-game") as string
+		);
 		if (teamsObj) {
 			const lsTeams: Team[] = teamsObj;
-			setTeams(lsTeams);
+			if (setTeams) setTeams(lsTeams);
 		}
 	}, []);
 
@@ -20,18 +22,20 @@ const Board: React.FC = (): JSX.Element => {
 		for (let i = 0; i < teams.length; i++) {
 			if (teams[i].name === team.name) {
 				if (type === "inc") {
-					if (newTeams[i].boardPosition !== 34) newTeams[i].boardPosition++;
+					if (newTeams[i].boardPosition !== 34)
+						(newTeams[i].boardPosition as number)++;
 				} else {
-					if (newTeams[i].boardPosition !== 0) newTeams[i].boardPosition--;
+					if (newTeams[i].boardPosition !== 0)
+						(newTeams[i].boardPosition as number)--;
 				}
 			}
 		}
 
-		setTeams(newTeams);
+		if (setTeams) setTeams(newTeams);
 		localStorage.setItem("30-seconds-game", JSON.stringify(newTeams));
 	};
 
-	const tokenGenerator = (team: Team, key) => (
+	const tokenGenerator = (team: Team, key: number) => (
 		<div className="token" key={key}>
 			{team.name[0] + team.name[Math.floor(team.name.length / 2)]}
 		</div>
