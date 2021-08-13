@@ -65,13 +65,13 @@ const Board: React.FC = (): JSX.Element => {
 						<p className="name">{team.name}</p>
 						<p className="board-pos">{team.boardPosition}</p>
 						<button className="up" onClick={() => updateTeamCount("inc", team)}>
-							<span>👆</span>
+							+1
 						</button>
 						<button
 							className="down"
 							onClick={() => updateTeamCount("dec", team)}
 						>
-							<span>👇</span>
+							-1
 						</button>
 					</div>
 				))}
