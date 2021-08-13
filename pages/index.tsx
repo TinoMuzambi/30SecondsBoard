@@ -1,9 +1,17 @@
-import { useState } from "react";
+import { useRouter } from "next/dist/client/router";
+import { FormEventHandler, useState } from "react";
 import Team from "../components/Team";
 
 const Home = () => {
 	const [noTeams, setNoTeams] = useState(0);
 	const [teams, setTeams] = useState([]);
+
+	const router = useRouter();
+
+	const submitHandler: FormEventHandler<HTMLFormElement> = (e) => {
+		e.preventDefault();
+		router.push("/board");
+	};
 
 	return (
 		<main className="main home">
@@ -11,7 +19,7 @@ const Home = () => {
 			<img src="/logo.png" alt="logo" className="logo" />
 
 			<h3 className="subtitle">Game Setup</h3>
-			<form className="form">
+			<form className="form" onSubmit={submitHandler}>
 				<div className="input-group">
 					<label htmlFor="teams" className="label">
 						How many teams are playing?

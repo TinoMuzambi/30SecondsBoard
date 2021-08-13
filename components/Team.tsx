@@ -17,11 +17,12 @@ const Team: React.FC<TeamProps> = ({ num, teams, setTeams }): JSX.Element => {
 					id="name"
 					value={teamName}
 					onChange={(e) => setTeamName(e.target.value)}
+					required
 					onBlur={(e) => {
 						if (e.target.value) setTeams([...teams, { name: e.target.value }]);
 					}}
 				/>
-				{num !== teams.length && <div className="line"></div>}
+				<div className="line"></div>
 			</div>
 		</>
 	);
