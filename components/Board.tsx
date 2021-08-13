@@ -35,16 +35,6 @@ const Board: React.FC = (): JSX.Element => {
 		localStorage.setItem("30-seconds-game", JSON.stringify(newTeams));
 	};
 
-	const tokenGenerator = (team: Team, key: number, colour: string) => (
-		<div
-			className="token"
-			key={key + Date.now()}
-			style={`--team-colour: ${colour}` as CSSProperties}
-		>
-			{team.name[0] + team.name[Math.floor(team.name.length / 2)]}
-		</div>
-	);
-
 	return (
 		<section className="board">
 			{board.map((el, key) => (
@@ -57,7 +47,9 @@ const Board: React.FC = (): JSX.Element => {
 					<div className="tokens">
 						{teams.map((team) => {
 							if (team.boardPosition === el.boardPosition)
-								return tokenGenerator(team, key, team.colour);
+								<div className="token" key={key + Date.now()}>
+									{team.name[0] + team.name[Math.floor(team.name.length / 2)]}
+								</div>;
 						})}
 					</div>
 				</div>
