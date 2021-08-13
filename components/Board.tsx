@@ -31,6 +31,12 @@ const Board: React.FC = (): JSX.Element => {
 		localStorage.setItem("30-seconds-game", JSON.stringify(newTeams));
 	};
 
+	const tokenGenerator = (team: Team, key) => (
+		<div className="token" key={key}>
+			{team.name[0] + team.name[Math.floor(team.name.length / 2)]}
+		</div>
+	);
+
 	return (
 		<section className="board">
 			{board.map((el, key) =>
@@ -38,14 +44,9 @@ const Board: React.FC = (): JSX.Element => {
 					<div className="item">
 						<img key={key} src={el.image} alt="Random" className="item" />
 						<div className="tokens">
-							{teams.map((team) => {
+							{teams.map((team, key) => {
 								if (team.boardPosition === el.boardPosition) {
-									return (
-										<div className="token">
-											{team.name[0] +
-												team.name[Math.floor(team.name.length / 2)]}
-										</div>
-									);
+									return tokenGenerator(team, key);
 								}
 							})}
 						</div>
@@ -56,12 +57,7 @@ const Board: React.FC = (): JSX.Element => {
 						<div className="tokens">
 							{teams.map((team) => {
 								if (team.boardPosition === el.boardPosition)
-									return (
-										<div className="token">
-											{team.name[0] +
-												team.name[Math.floor(team.name.length) / 2]}
-										</div>
-									);
+									return tokenGenerator(team, key);
 							})}
 						</div>
 					</div>
