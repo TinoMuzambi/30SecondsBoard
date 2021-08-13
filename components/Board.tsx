@@ -47,12 +47,13 @@ const Board: React.FC = (): JSX.Element => {
 						{teams.map((team, key) => {
 							if (team.boardPosition === el.boardPosition)
 								return (
-									<div
-										className="token"
-										key={key}
-										// style={`--team-colour: ${team.colour}` as CSSProperties}
-									>
+									<div className="token" key={key}>
 										{team.name[0] + team.name[Math.floor(team.name.length / 2)]}
+										<style jsx>
+											{`
+												--team-colour: ${team.colour};
+											`}
+										</style>
 									</div>
 								);
 						})}
