@@ -1,19 +1,34 @@
+@use "../abstracts/" as *;
+
 .main {
-	background: black;
-	color: white;
 	padding: 2rem 5%;
 
 	.board {
 		display: grid;
 		grid-template-columns: repeat(9, 1fr);
 		grid-template-rows: repeat(7, 1fr);
+		align-items: center;
+		justify-items: center;
 		margin: 2rem auto;
 		gap: 2rem;
+		height: 6.25rem;
+		aspect-ratio: 1;
+
+		.item {
+			border-radius: 1rem;
+		}
 
 		div.item {
-			width: 6.25rem;
-			aspect-ratio: 1;
-			background: yellow;
+			&.xl {
+				height: 10rem;
+				aspect-ratio: 1;
+				height: 8rem;
+				background: #333;
+				text-transform: uppercase;
+				font-weight: bold;
+				font-size: $font-md;
+				@include flexAllCol;
+			}
 		}
 	}
 }

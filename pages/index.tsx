@@ -9,7 +9,9 @@ const Home = () => {
 					el.shown ? (
 						<img key={key} src={el.image} alt="Random" className="item" />
 					) : (
-						<div key={key} className="item"></div>
+						<div key={key} className={`item ${el?.target ? "xl" : ""}`}>
+							{el?.target}
+						</div>
 					)
 				)}
 			</section>
