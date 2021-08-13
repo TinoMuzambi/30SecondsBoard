@@ -46,10 +46,11 @@ const Meta: React.FC<MetaProps> = ({
 );
 
 Meta.defaultProps = {
-	title: "Next.js Boilerplate",
-	keywords: "next.js",
-	description: "Clean Next.js with TypeScript and Sass Boilerplate with Yarn",
-	image: "https://unsplash.it/1000",
+	title: "30 Seconds",
+	keywords: "entertainment, 30 seconds, game, play, competition, team",
+	description:
+		"An implementation of a 30 seconds game. BOYQ (Bring Your Own Questions) and play along.",
+	image: "https://www.ultraboardgames.com/img/slideshow/30-seconds.jpg",
 	url: BASE_URL,
 };
 
