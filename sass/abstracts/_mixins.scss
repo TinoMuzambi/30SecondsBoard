@@ -18,23 +18,3 @@
 		@content;
 	}
 }
-
-@mixin tokensGen {
-	.tokens {
-		background: lighten($color: #333, $amount: 10);
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		font-size: $font-sm;
-		border-radius: 1rem;
-		padding: 0.3rem;
-		opacity: 0.9;
-		text-align: center;
-		z-index: 2;
-
-		.token {
-			background: var(--team-colour);
-		}
-	}
-}

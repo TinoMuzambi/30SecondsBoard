@@ -25,33 +25,46 @@
 		height: 100vh;
 
 		.item {
-			border-radius: 1rem;
-			height: 6.25rem;
-			aspect-ratio: 1;
-			text-transform: uppercase;
-			font-weight: bold;
-		}
-
-		image.item {
-			height: 6.25rem;
-			aspect-ratio: 1;
-			object-fit: cover;
-		}
-
-		div.item {
 			position: relative;
 
 			&.xl {
+				@include flexAllCol;
 				height: 10rem;
 				aspect-ratio: 1;
 				height: 8rem;
 				background: #333;
-				font-size: $font-md;
-				@include flexAllCol;
-				@include tokensGen;
+				border-radius: 1rem;
+
+				.special {
+					font-size: $font-md;
+					text-transform: uppercase;
+					font-weight: bold;
+				}
 			}
 
-			@include tokensGen;
+			.board-image {
+				height: 6.25rem;
+				aspect-ratio: 1;
+				border-radius: 1rem;
+			}
+
+			.tokens {
+				background: lighten($color: #333, $amount: 10);
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				font-size: $font-sm;
+				border-radius: 1rem;
+				padding: 0.3rem;
+				opacity: 0.9;
+				text-align: center;
+				z-index: 2;
+
+				.token {
+					background: var(--team-colour);
+				}
+			}
 		}
 	}
 

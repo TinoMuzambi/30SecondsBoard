@@ -39,8 +39,10 @@ const Board: React.FC = (): JSX.Element => {
 		<section className="board">
 			{board.map((el, key) => (
 				<div key={key} className={`item ${el?.target ? "xl" : ""}`}>
-					{el?.target}
-					{el.shown && <img src={el.image} alt="Random" className="item" />}
+					{el.target && <p className="special">{el?.target}</p>}
+					{el.shown && (
+						<img src={el.image} alt="Random" className="board-image" />
+					)}
 					<div className="tokens">
 						{teams.map((team) => {
 							if (team.boardPosition === el.boardPosition)
