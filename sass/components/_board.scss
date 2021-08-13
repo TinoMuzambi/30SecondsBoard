@@ -73,6 +73,7 @@
 		background: lighten($color: #333, $amount: 10);
 		border-radius: 1rem;
 		padding: 1rem;
+		z-index: 2;
 
 		.row {
 			display: grid;
