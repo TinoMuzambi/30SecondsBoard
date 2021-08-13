@@ -13,4 +13,5 @@ export interface MetaProps {
 export interface BoardItem {
 	image: string;
 	shown: boolean;
+	target?: "start" | "finish";
 }
