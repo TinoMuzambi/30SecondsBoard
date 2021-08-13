@@ -28,6 +28,8 @@
 			border-radius: 1rem;
 			height: 6.25rem;
 			aspect-ratio: 1;
+			text-transform: uppercase;
+			font-weight: bold;
 		}
 
 		image.item {
@@ -44,8 +46,6 @@
 				aspect-ratio: 1;
 				height: 8rem;
 				background: #333;
-				text-transform: uppercase;
-				font-weight: bold;
 				font-size: $font-md;
 				@include flexAllCol;
 			}
