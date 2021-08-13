@@ -14,8 +14,6 @@ export interface MetaProps {
 
 export interface TeamProps {
 	num: number;
-	teams: any[];
-	setTeams: Dispatch<SetStateAction<any[]>>;
 }
 
 export interface ContextProps {

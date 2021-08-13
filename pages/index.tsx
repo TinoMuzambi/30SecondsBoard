@@ -10,7 +10,9 @@ const Home = () => {
 
 	const submitHandler: FormEventHandler<HTMLFormElement> = (e) => {
 		e.preventDefault();
-		router.push("/board");
+
+		if (teams?.length > 0) router.push("/board");
+		else alert("Please create some teams before starting the game.");
 	};
 
 	return (
