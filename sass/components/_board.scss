@@ -35,6 +35,9 @@
 			.tokens {
 				background: lighten($color: #333, $amount: 10);
 				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
 				font-size: $font-sm;
 				border-radius: 100%;
 				opacity: 0.7;
