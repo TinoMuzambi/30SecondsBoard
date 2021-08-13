@@ -1,0 +1,6 @@
+@use "../abstracts/" as *;
+
+.main.home {
+	@include flexAllCol;
+	min-height: 100vh;
+}

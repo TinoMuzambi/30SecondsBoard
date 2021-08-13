@@ -22,10 +22,6 @@ const Team: React.FC<TeamProps> = ({ num, teams, setTeams }): JSX.Element => {
 					}}
 				/>
 			</div>
-			<div className="input-group">
-				<label htmlFor="" className="label"></label>
-				<input type="text" className="input" />
-			</div>
 		</>
 	);
 };

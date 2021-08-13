@@ -6,7 +6,7 @@ const Home = () => {
 	const [teams, setTeams] = useState([]);
 
 	return (
-		<main className="main">
+		<main className="main home">
 			<h1 className="title">30 Seconds Game</h1>
 
 			<h3 className="subtitle">Game Setup</h3>
