@@ -19,6 +19,8 @@
 		}
 
 		div.item {
+			position: relative;
+
 			&.xl {
 				height: 10rem;
 				aspect-ratio: 1;
@@ -28,6 +30,11 @@
 				font-weight: bold;
 				font-size: $font-md;
 				@include flexAllCol;
+			}
+
+			.tokens {
+				background: lighten($color: #333, $amount: 10);
+				position: absolute;
 			}
 		}
 	}
