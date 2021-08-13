@@ -15,3 +15,8 @@ export interface BoardItem {
 	shown: boolean;
 	target?: "start" | "finish";
 }
+
+export interface Question {
+	id: number;
+	text: string;
+}
