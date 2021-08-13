@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { FormEventHandler, useContext, useState } from "react";
+import { FormEventHandler, useContext, useEffect, useState } from "react";
 
 import Team from "../components/Team";
 import { AppContext } from "../context/AppContext";
@@ -8,6 +8,10 @@ const Home = () => {
 	const [noTeams, setNoTeams] = useState(0);
 
 	const { teams } = useContext(AppContext);
+
+	useEffect(() => {
+		localStorage.removeItem("30-seconds-game");
+	}, []);
 
 	const router = useRouter();
 
