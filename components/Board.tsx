@@ -43,7 +43,7 @@ const Board: React.FC = (): JSX.Element => {
 									return (
 										<div className="token">
 											{team.name[0] +
-												team.name[Math.floor(team.name.length) / 2]}
+												team.name[Math.floor(team.name.length / 2)]}
 										</div>
 									);
 								}
