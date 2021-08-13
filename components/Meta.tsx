@@ -50,7 +50,7 @@ Meta.defaultProps = {
 	keywords: "entertainment, 30 seconds, game, play, competition, team",
 	description:
 		"An implementation of a 30 seconds game. BOYQ (Bring Your Own Questions) and play along.",
-	image: "https://www.ultraboardgames.com/img/slideshow/30-seconds.jpg",
+	image: "https://a.storyblok.com/f/114267/700x700/8b078f377b/logo.png",
 	url: BASE_URL,
 };
 
