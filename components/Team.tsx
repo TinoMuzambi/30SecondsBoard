@@ -9,7 +9,7 @@ const Team: React.FC<TeamProps> = ({ num, teams, setTeams }): JSX.Element => {
 			<h2 className="name">Team #{num + 1} details:</h2>
 			<div className="input-group">
 				<label htmlFor="name" className="label">
-					Team Name
+					Team Name:
 				</label>
 				<input
 					type="text"
@@ -21,6 +21,7 @@ const Team: React.FC<TeamProps> = ({ num, teams, setTeams }): JSX.Element => {
 						if (e.target.value) setTeams([...teams, { name: e.target.value }]);
 					}}
 				/>
+				{num !== teams.length && <div className="line"></div>}
 			</div>
 		</>
 	);

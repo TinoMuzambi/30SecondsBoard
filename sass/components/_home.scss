@@ -3,4 +3,68 @@
 .main.home {
 	@include flexAllCol;
 	min-height: 100vh;
+	justify-content: flex-start;
+
+	.title {
+		margin: 4rem 0;
+	}
+
+	.logo {
+		height: 10rem;
+	}
+
+	.subtitle {
+		margin-bottom: 2rem;
+	}
+
+	.form {
+		@include flexAllCol;
+		align-items: flex-start;
+
+		.team {
+			width: 100%;
+		}
+
+		.input-group {
+			@include flexAllCol;
+			align-items: flex-start;
+			gap: 0.5rem;
+			position: relative;
+			width: 100%;
+
+			.input {
+				outline: none;
+				border: none;
+				border-radius: 1rem;
+				padding: 0.5rem 1rem;
+				width: 100%;
+			}
+
+			.line {
+				width: 100%;
+				height: 1px;
+				background: white;
+				margin-top: 1rem;
+			}
+
+			.submit {
+				margin: 2rem 0;
+				width: 100%;
+				border: none;
+				outline: none;
+				background: white;
+				padding: 1rem 3rem;
+				border-radius: 1rem;
+				cursor: pointer;
+
+				&:hover {
+					transform: scale(1.3);
+				}
+			}
+		}
+
+		.name {
+			margin: 1rem 0;
+		}
+	}
 }

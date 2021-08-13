@@ -8,12 +8,13 @@ const Home = () => {
 	return (
 		<main className="main home">
 			<h1 className="title">30 Seconds Game</h1>
+			<img src="/logo.png" alt="logo" className="logo" />
 
 			<h3 className="subtitle">Game Setup</h3>
 			<form className="form">
 				<div className="input-group">
 					<label htmlFor="teams" className="label">
-						How many teams are playing
+						How many teams are playing?
 					</label>
 					<input
 						type="number"
@@ -30,7 +31,9 @@ const Home = () => {
 						<Team num={key} teams={teams} setTeams={setTeams} />
 					</div>
 				))}
-				<input type="submit" value="Start Game" />
+				<div className="input-group">
+					<input type="submit" value="Start Game" className="submit" />
+				</div>
 			</form>
 		</main>
 	);
