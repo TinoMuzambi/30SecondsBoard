@@ -13,6 +13,11 @@ const Home = () => {
 		localStorage.removeItem("30-seconds-game");
 	}, []);
 
+	const validate = (num: number) => {
+		if (!(num > 0 && num <= 10)) return 0;
+		else return num;
+	};
+
 	const router = useRouter();
 
 	const submitHandler: FormEventHandler<HTMLFormElement> = (e) => {
@@ -40,7 +45,9 @@ const Home = () => {
 						min={0}
 						max={10}
 						value={noTeams}
-						onChange={(e) => setNoTeams(Number.parseInt(e.target.value))}
+						onChange={(e) =>
+							setNoTeams(validate(Number.parseInt(e.target.value)))
+						}
 						onWheel={(e) => e.currentTarget.blur()}
 					/>
 				</div>
