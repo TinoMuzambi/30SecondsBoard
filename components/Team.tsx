@@ -24,21 +24,20 @@ const TeamComp: React.FC<TeamProps> = ({ num }): JSX.Element => {
 		boardPosition: number,
 		colour: string
 	) => {
+		let newTeams: Team[] = [];
 		if (isUnique(name, teams)) {
-			const newTeams = [
+			newTeams = [
 				...teams,
 				{ name: name, boardPosition: boardPosition, colour: colour },
 			];
-			if (setTeams) setTeams(newTeams);
-			localStorage.setItem("30-seconds-game", JSON.stringify(newTeams));
 		} else {
-			const newTeams = [...teams];
+			newTeams = [...teams];
 			for (let i = 0; i < teams.length; i++) {
 				if (newTeams[i].name === name) newTeams[i].colour = colour;
 			}
-			if (setTeams) setTeams(newTeams);
-			localStorage.setItem("30-seconds-game", JSON.stringify(newTeams));
 		}
+		if (setTeams) setTeams(newTeams);
+		localStorage.setItem("30-seconds-game", JSON.stringify(newTeams));
 	};
 
 	return (
