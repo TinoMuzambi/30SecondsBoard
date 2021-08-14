@@ -114,9 +114,8 @@
 
 			.name {
 				background: var(--team-colour);
-				padding: 0.3rem;
+				padding: 0.5rem;
 				border-radius: 1rem;
-				width: 100%;
 			}
 		}
 
@@ -133,5 +132,12 @@
 				background: rgb(210, 210, 210);
 			}
 		}
+	}
+
+	.white {
+		border-radius: 1rem;
+		background: white;
+		padding: 0.2rem;
+		color: black;
 	}
 }

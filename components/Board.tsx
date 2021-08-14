@@ -48,7 +48,10 @@ const Board: React.FC = (): JSX.Element => {
 							if (team.boardPosition === el.boardPosition)
 								return (
 									<div className="token" key={key}>
-										{team.name[0] + team.name[Math.floor(team.name.length / 2)]}
+										<span className="white">
+											{team.name[0] +
+												team.name[Math.floor(team.name.length / 2)]}
+										</span>
 										<style jsx>
 											{`
 												--team-colour: ${team.colour};
@@ -66,7 +69,7 @@ const Board: React.FC = (): JSX.Element => {
 				{teams.map((team, key) => (
 					<div className="row" key={key}>
 						<p className="name">
-							{team.name}
+							<span className="white">{team.name}</span>
 							<style jsx>
 								{`
 									--team-colour: ${team.colour};
