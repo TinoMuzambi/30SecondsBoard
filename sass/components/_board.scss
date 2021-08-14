@@ -110,7 +110,8 @@
 
 		.row {
 			display: grid;
-			grid-template-columns: 4fr 1fr 1fr 1fr;
+			grid-template-columns: 3fr 1fr 1fr 1fr;
+			gap: 1rem;
 			align-items: center;
 			justify-items: center;
 			margin: 0.3rem 0;
