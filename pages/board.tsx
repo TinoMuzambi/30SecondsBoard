@@ -1,10 +1,15 @@
-import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { useContext, useEffect, useState } from "react";
 
 import Board from "../components/Board";
+import { AppContext } from "../context/AppContext";
 
 const BoardPage: React.FC = (): JSX.Element => {
 	const [time, setTime] = useState(30);
 	const [start, setStart] = useState(false);
+
+	const router = useRouter();
+	const { setTeams } = useContext(AppContext);
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
@@ -33,7 +38,19 @@ const BoardPage: React.FC = (): JSX.Element => {
 						</button>
 					</div>
 				</div>
-				<h1 className="title">30 Seconds Game</h1>
+				<div className="wrapper">
+					<h1 className="title">30 Seconds Game</h1>
+					<button
+						className="start"
+						onClick={() => {
+							localStorage.removeItem("30-seconds-game");
+							if (setTeams) setTeams([]);
+							router.push("/");
+						}}
+					>
+						New Game
+					</button>
+				</div>
 			</header>
 			<Board />
 		</main>
