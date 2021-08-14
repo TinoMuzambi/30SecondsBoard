@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 
 import Board from "../components/Board";
 import { AppContext } from "../context/AppContext";
@@ -10,6 +10,7 @@ const BoardPage: React.FC = (): JSX.Element => {
 
 	const router = useRouter();
 	const { setTeams } = useContext(AppContext);
+	const boardRef = useRef(null);
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
@@ -20,9 +21,13 @@ const BoardPage: React.FC = (): JSX.Element => {
 		return () => clearTimeout(timer);
 	}, [start, time]);
 
+	useEffect(() => {
+		(boardRef?.current as any).scrollIntoView();
+	}, []);
+
 	return (
 		<main className="main board">
-			<header className="header">
+			<header className="header" ref={boardRef}>
 				<div className="wrapper">
 					<img src="/logo.png" alt="logo" className="logo" />
 					<div className="timer">

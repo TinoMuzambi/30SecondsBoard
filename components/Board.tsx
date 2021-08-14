@@ -1,4 +1,4 @@
-import { CSSProperties, useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 
 import { AppContext } from "../context/AppContext";
 import { board } from "../data/board";
