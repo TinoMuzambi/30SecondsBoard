@@ -9,7 +9,7 @@ const BoardPage: React.FC = (): JSX.Element => {
 	const [start, setStart] = useState(false);
 
 	const router = useRouter();
-	const { setTeams } = useContext(AppContext);
+	const { teams, setTeams } = useContext(AppContext);
 	const boardRef = useRef(null);
 
 	useEffect(() => {
@@ -22,8 +22,17 @@ const BoardPage: React.FC = (): JSX.Element => {
 	}, [start, time]);
 
 	useEffect(() => {
+		if (teams.length <= 1) return startNewGame();
 		(boardRef?.current as any).scrollIntoView();
 	}, []);
+
+	const startNewGame = () => {
+		localStorage.removeItem("30-seconds-game");
+		if (setTeams) setTeams([]);
+		router.push("/");
+	};
+
+	if (teams.length <= 1) return <main></main>;
 
 	return (
 		<main className="main board">
@@ -45,14 +54,7 @@ const BoardPage: React.FC = (): JSX.Element => {
 				</div>
 				<div className="wrapper">
 					<h1 className="title">30 Seconds Game</h1>
-					<button
-						className="start"
-						onClick={() => {
-							localStorage.removeItem("30-seconds-game");
-							if (setTeams) setTeams([]);
-							router.push("/");
-						}}
-					>
+					<button className="start" onClick={startNewGame}>
 						New Game
 					</button>
 				</div>
