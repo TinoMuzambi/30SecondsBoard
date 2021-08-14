@@ -16,11 +16,8 @@ const BoardPage: React.FC = (): JSX.Element => {
 	}, [start, time]);
 
 	const startTimer = () => {
-		setInterval(() => {
-			if (time > 0) {
-				setStart(true);
-			}
-		}, 1000);
+		setTime(30);
+		setStart(true);
 	};
 
 	return (
