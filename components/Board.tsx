@@ -7,16 +7,6 @@ import { Team } from "../interfaces";
 const Board: React.FC = (): JSX.Element => {
 	const { teams, setTeams } = useContext(AppContext);
 
-	useEffect(() => {
-		const teamsObj = JSON.parse(
-			localStorage.getItem("30-seconds-game") as string
-		);
-		if (teamsObj) {
-			const lsTeams: Team[] = teamsObj;
-			if (setTeams) setTeams(lsTeams);
-		}
-	}, []);
-
 	const updateTeamCount = (type: "inc" | "dec", team: Team) => {
 		let newTeams: Team[] = [...teams];
 		for (let i = 0; i < teams.length; i++) {

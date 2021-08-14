@@ -3,6 +3,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 
 import Board from "../components/Board";
 import { AppContext } from "../context/AppContext";
+import { Team } from "../interfaces";
 
 const BoardPage: React.FC = (): JSX.Element => {
 	const [time, setTime] = useState(30);
@@ -22,8 +23,17 @@ const BoardPage: React.FC = (): JSX.Element => {
 	}, [start, time]);
 
 	useEffect(() => {
-		if (teams.length <= 1) return startNewGame();
-		(boardRef?.current as any).scrollIntoView();
+		const teamsObj = JSON.parse(
+			localStorage.getItem("30-seconds-game") as string
+		);
+		let lsTeams: Team[] = [];
+		if (teamsObj) {
+			lsTeams = teamsObj;
+			if (setTeams) setTeams(lsTeams);
+		}
+
+		if (lsTeams?.length <= 1) return startNewGame();
+		(boardRef?.current as any)?.scrollIntoView();
 	}, []);
 
 	const startNewGame = () => {
