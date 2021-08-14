@@ -58,7 +58,7 @@ const Home = () => {
 						<label className="label">{noTeams}</label>
 					</div>
 				</div>
-				{[...Array(noTeams)].map((item, key) => (
+				{[...Array(noTeams)].map((_, key) => (
 					<div className="team" key={key}>
 						<Team num={key} />
 					</div>
