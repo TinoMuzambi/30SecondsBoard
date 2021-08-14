@@ -1,11 +1,12 @@
 @use "../abstracts/" as *;
 
 .main.board {
-	padding: 2rem 5%;
+	padding: 2rem 5% 4rem;
+	transform: scale(0.65);
 
 	.header {
 		@include flexAllRow;
-		justify-content: space-between;
+		justify-content: space-evenly;
 
 		.wrapper {
 			@include flexAllRow;
@@ -99,10 +100,9 @@
 	}
 
 	.leaderboard {
-		grid-column: 7 / span 2;
-		grid-row: 2 / span 5;
-		top: 2rem;
-		right: 2rem;
+		position: fixed;
+		top: 14rem;
+		right: -21rem;
 		background: lighten($color: #333, $amount: 10);
 		border-radius: 1rem;
 		padding: 1rem;
