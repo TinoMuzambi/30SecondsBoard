@@ -50,6 +50,7 @@ const TeamComp: React.FC<TeamProps> = ({ num }): JSX.Element => {
 					className="input"
 					id="name"
 					value={teamName}
+					maxLength={21}
 					onChange={(e) => setTeamName(e.target.value)}
 					required
 					onBlur={(e) => {
