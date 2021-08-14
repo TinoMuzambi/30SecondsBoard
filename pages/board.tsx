@@ -42,8 +42,6 @@ const BoardPage: React.FC = (): JSX.Element => {
 		router.push("/");
 	};
 
-	if (teams.length <= 1) return <main></main>;
-
 	return (
 		<main className="main board">
 			<header className="header" ref={boardRef}>
