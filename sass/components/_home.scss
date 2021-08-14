@@ -26,11 +26,15 @@
 		}
 
 		.input-group {
-			@include flexAllCol;
 			align-items: flex-start;
 			gap: 0.5rem;
 			position: relative;
 			width: 100%;
+
+			.flex {
+				width: 100%;
+				@include flexAllRow;
+			}
 
 			.input {
 				outline: none;
@@ -38,6 +42,7 @@
 				border-radius: 1rem;
 				padding: 0.5rem 1rem;
 				width: 100%;
+				margin: 0.5rem 0;
 
 				&.colour {
 					height: 5rem;
