@@ -49,18 +49,21 @@ const Home = () => {
 					<label htmlFor="teams" className="label">
 						How many teams are playing?
 					</label>
-					<input
-						type="number"
-						className="input"
-						id="teams"
-						min={0}
-						max={10}
-						value={noTeams}
-						onChange={(e) =>
-							setNoTeams(validate(Number.parseInt(e.target.value)))
-						}
-						onWheel={(e) => e.currentTarget.blur()}
-					/>
+					<div className="flex">
+						<input
+							type="range"
+							className="input"
+							id="teams"
+							min={0}
+							max={10}
+							value={noTeams}
+							onChange={(e) =>
+								setNoTeams(validate(Number.parseInt(e.target.value)))
+							}
+							onWheel={(e) => e.currentTarget.blur()}
+						/>
+						<label className="label">{noTeams}</label>
+					</div>
 				</div>
 				{[...Array(noTeams)].map((item, key) => (
 					<div className="team" key={key}>
