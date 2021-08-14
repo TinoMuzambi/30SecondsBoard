@@ -26,7 +26,7 @@ const BoardPage: React.FC = (): JSX.Element => {
 				<div className="wrapper">
 					<img src="/logo.png" alt="logo" className="logo" />
 					<div className="timer">
-						<h1 className="seconds">{time}</h1>
+						<h1 className="seconds">{time === 0 ? "Time's Up!" : time}</h1>
 						<button className="start" onClick={startTimer}>
 							Start
 						</button>
