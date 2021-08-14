@@ -102,7 +102,7 @@
 		position: fixed;
 		top: 14rem;
 		right: -11rem;
-		// transform: translateX(11rem);
+		transform: translateX(14.5rem);
 		background: lighten($color: #333, $amount: 10);
 		border-radius: 1rem;
 		padding: 1rem;
@@ -110,7 +110,7 @@
 
 		.row {
 			display: grid;
-			grid-template-columns: 3fr 1fr 1fr 1fr;
+			grid-template-columns: 4fr 1fr 1fr 1fr;
 			gap: 1rem;
 			align-items: center;
 			justify-items: center;
