@@ -15,11 +15,6 @@ const BoardPage: React.FC = (): JSX.Element => {
 		return () => clearTimeout(timer);
 	}, [start, time]);
 
-	const startTimer = () => {
-		setTime(30);
-		setStart(true);
-	};
-
 	return (
 		<main className="main board">
 			<header className="header">
@@ -27,7 +22,13 @@ const BoardPage: React.FC = (): JSX.Element => {
 					<img src="/logo.png" alt="logo" className="logo" />
 					<div className="timer">
 						<h1 className="seconds">{time === 0 ? "Time's Up!" : time}</h1>
-						<button className="start" onClick={startTimer}>
+						<button
+							className="start"
+							onClick={() => {
+								setTime(30);
+								setStart(true);
+							}}
+						>
 							Start
 						</button>
 					</div>
