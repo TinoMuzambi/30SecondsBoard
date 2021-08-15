@@ -9,11 +9,12 @@ const BoardPage: React.FC = (): JSX.Element => {
 	const [time, setTime] = useState(30);
 	const [start, setStart] = useState(false);
 
-	const router = useRouter();
-	const { teams, setTeams } = useContext(AppContext);
+	const { setTeams } = useContext(AppContext);
 	const boardRef = useRef(null);
+	const router = useRouter();
 
 	useEffect(() => {
+		// Timer for 30 second countdown.
 		const timer = setTimeout(() => {
 			if (time > 0 && start) {
 				setTime(time - 1);
@@ -23,6 +24,7 @@ const BoardPage: React.FC = (): JSX.Element => {
 	}, [start, time]);
 
 	useEffect(() => {
+		// Try getting and setting teams from local storage.
 		const teamsObj = JSON.parse(
 			localStorage.getItem("30-seconds-game") as string
 		);
@@ -36,6 +38,7 @@ const BoardPage: React.FC = (): JSX.Element => {
 		(boardRef?.current as any)?.scrollIntoView();
 	}, []);
 
+	// Remove teams from local storage, context and push to home page.
 	const startNewGame = () => {
 		localStorage.removeItem("30-seconds-game");
 		if (setTeams) setTeams([]);
@@ -56,7 +59,7 @@ const BoardPage: React.FC = (): JSX.Element => {
 								setStart(true);
 							}}
 						>
-							Start
+							{time === 30 ? "Start" : "Restart"}
 						</button>
 					</div>
 				</div>
