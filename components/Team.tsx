@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+
 import { AppContext } from "../context/AppContext";
 import { Team, TeamProps } from "../interfaces";
 import { isUnique } from "../utils";
@@ -10,6 +11,7 @@ const TeamComp: React.FC<TeamProps> = ({ num }): JSX.Element => {
 	const { teams, setTeams } = useContext(AppContext);
 
 	useEffect(() => {
+		// If there's an entry in local storage, load it into context.
 		const teamsObj = JSON.parse(
 			localStorage.getItem("30-seconds-game") as string
 		);
@@ -19,21 +21,26 @@ const TeamComp: React.FC<TeamProps> = ({ num }): JSX.Element => {
 		}
 	}, []);
 
+	// Add team to context.
 	const updateContext = (
 		name: string,
 		boardPosition: number,
 		colour: string
 	) => {
+		// Spread out existing teams and add new team.
 		let newTeams: Team[] = [
 			...teams,
 			{ name: name, boardPosition: boardPosition, colour: colour },
 		];
 		if (!isUnique(name, newTeams)) {
+			// If team name already in list, update that team's colour.
 			newTeams = [...teams];
 			for (let i = 0; i < teams.length; i++) {
 				if (newTeams[i].name === name) newTeams[i].colour = colour;
 			}
 		}
+
+		// Update context and store in local storage.
 		if (setTeams) setTeams(newTeams);
 		localStorage.setItem("30-seconds-game", JSON.stringify(newTeams));
 	};
