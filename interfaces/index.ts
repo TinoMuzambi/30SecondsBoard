@@ -1,5 +1,3 @@
-import { Dispatch, SetStateAction } from "react";
-
 export interface WrapperProps {
 	children: JSX.Element | JSX.Element[];
 }
@@ -30,11 +28,6 @@ export interface BoardItem {
 	shown: boolean;
 	target?: "start" | "finish";
 	boardPosition?: number;
-}
-
-export interface Question {
-	id: number;
-	text: string;
 }
 
 export interface Team {
