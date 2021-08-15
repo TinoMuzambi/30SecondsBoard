@@ -25,7 +25,7 @@ export const board: BoardItem[] = [
 		shown: true,
 		boardPosition: 14,
 	},
-	{ image: "https://unsplash.it/100", shown: false },
+	{ shown: false },
 	{
 		image:
 			"https://media.freebibleimages.org/stories/FB_ISC_Christmas_Clipart/overview-thumbnails/022-isc-christmas-clipart.jpg?1613596491",
@@ -56,23 +56,23 @@ export const board: BoardItem[] = [
 		shown: true,
 		boardPosition: 10,
 	},
-	{ image: "https://unsplash.it/100", shown: false },
-	{ image: "https://unsplash.it/100", shown: false },
+	{ shown: false },
+	{ shown: false },
 	{
 		image:
 			"https://media.freebibleimages.org/stories/FB_ISC_Men_1/overview-thumbnails/008-isc-men1.jpg?1613596393",
 		shown: true,
 		boardPosition: 15,
 	},
-	{ image: "https://unsplash.it/100", shown: false },
+	{ shown: false },
 	{
 		image:
 			"https://media.freebibleimages.org/stories/FB_ISC_Christmas_Clipart/overview-thumbnails/001-isc-christmas-clipart.jpg?1613596488",
 		shown: true,
 		boardPosition: 19,
 	},
-	{ image: "https://unsplash.it/100", shown: false },
-	{ image: "https://unsplash.it/100", shown: false },
+	{ shown: false },
+	{ shown: false },
 	{
 		image:
 			"https://media.freebibleimages.org/stories/FB_ISC_Christmas_Clipart/overview-thumbnails/003-isc-christmas-clipart.jpg?1613596489",
@@ -85,8 +85,8 @@ export const board: BoardItem[] = [
 		shown: true,
 		boardPosition: 9,
 	},
-	{ image: "https://unsplash.it/100", shown: false },
-	{ image: "https://unsplash.it/100", shown: false },
+	{ shown: false },
+	{ shown: false },
 	{
 		image:
 			"https://media.freebibleimages.org/stories/FB_ISC_Christmas_Clipart/overview-thumbnails/008-isc-christmas-clipart.jpg?1613596489",
@@ -105,8 +105,8 @@ export const board: BoardItem[] = [
 		shown: true,
 		boardPosition: 18,
 	},
-	{ image: "https://unsplash.it/100", shown: false },
-	{ image: "https://unsplash.it/100", shown: false },
+	{ shown: false },
+	{ shown: false },
 	{
 		image:
 			"https://media.freebibleimages.org/stories/FB_ISC_Kings_Queens/overview-thumbnails/020-isc-kings-queens.jpg?1613596390",
@@ -119,13 +119,13 @@ export const board: BoardItem[] = [
 		shown: true,
 		boardPosition: 8,
 	},
-	{ image: "https://unsplash.it/100", shown: false },
-	{ image: "https://unsplash.it/100", shown: false },
-	{ image: "https://unsplash.it/100", shown: false },
-	{ image: "https://unsplash.it/100", shown: false },
-	{ image: "https://unsplash.it/100", shown: false },
-	{ image: "https://unsplash.it/100", shown: false },
-	{ image: "https://unsplash.it/100", shown: false },
+	{ shown: false },
+	{ shown: false },
+	{ shown: false },
+	{ shown: false },
+	{ shown: false },
+	{ shown: false },
+	{ shown: false },
 	{
 		image:
 			"https://media.freebibleimages.org/stories/FB_ISC_Men_1/overview-thumbnails/005-isc-men1.jpg?1613596393",
@@ -138,23 +138,23 @@ export const board: BoardItem[] = [
 		shown: true,
 		boardPosition: 7,
 	},
-	{ image: "https://unsplash.it/100", shown: false },
-	{ image: "https://unsplash.it/100", shown: false },
+	{ shown: false },
+	{ shown: false },
 	{
 		image: "https://unsplash.it/100",
 		shown: false,
 		target: "start",
 		boardPosition: 0,
 	},
-	{ image: "https://unsplash.it/100", shown: false },
+	{ shown: false },
 	{
 		image: "https://unsplash.it/100",
 		shown: false,
 		target: "finish",
 		boardPosition: 34,
 	},
-	{ image: "https://unsplash.it/100", shown: false },
-	{ image: "https://unsplash.it/100", shown: false },
+	{ shown: false },
+	{ shown: false },
 	{
 		image:
 			"https://media.freebibleimages.org/stories/FB_ISC_Men_1/overview-thumbnails/007-isc-men1.jpg?1613596393",
@@ -167,23 +167,23 @@ export const board: BoardItem[] = [
 		shown: true,
 		boardPosition: 6,
 	},
-	{ image: "https://unsplash.it/100", shown: false },
-	{ image: "https://unsplash.it/100", shown: false },
+	{ shown: false },
+	{ shown: false },
 	{
 		image:
 			"https://media.freebibleimages.org/stories/FB_ISC_Animals/overview-thumbnails/015-isc-animals.jpg?1613596834",
 		shown: true,
 		boardPosition: 1,
 	},
-	{ image: "https://unsplash.it/100", shown: false },
+	{ shown: false },
 	{
 		image:
 			"https://media.freebibleimages.org/stories/FB_ISC_Kings_Queens/overview-thumbnails/025-isc-kings-queens.jpg?1613596391",
 		shown: true,
 		boardPosition: 33,
 	},
-	{ image: "https://unsplash.it/100", shown: false },
-	{ image: "https://unsplash.it/100", shown: false },
+	{ shown: false },
+	{ shown: false },
 	{
 		image:
 			"https://media.freebibleimages.org/stories/FB_ISC_Soldiers_Guards/overview-thumbnails/002-isc-soldiers-guards.jpg?1613596618",
@@ -214,7 +214,7 @@ export const board: BoardItem[] = [
 		shown: true,
 		boardPosition: 2,
 	},
-	{ image: "https://unsplash.it/100", shown: false },
+	{ shown: false },
 	{
 		image:
 			"https://media.freebibleimages.org/stories/FB_ISC_Christmas_Clipart/overview-thumbnails/006-isc-christmas-clipart.jpg?1613596489",

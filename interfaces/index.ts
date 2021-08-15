@@ -26,7 +26,7 @@ export interface AppProviderProps {
 }
 
 export interface BoardItem {
-	image: string;
+	image?: string;
 	shown: boolean;
 	target?: "start" | "finish";
 	boardPosition?: number;
