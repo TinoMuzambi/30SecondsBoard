@@ -1,4 +1,15 @@
 {
+	"name": "30secondsboard",
+	"version": "1.0.0",
+	"author": {
+		"name": "Tino Muzambi",
+		"email": "tino@tinomuzambi.com",
+		"url": "https://tinomuzambi.com"
+	},
+	"repository": {
+		"type": "github",
+		"url": "https://github.com/TinoMuzambi/30SecondsBoard"
+	},
 	"private": true,
 	"scripts": {
 		"dev": "next",
