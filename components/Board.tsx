@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 
 import { AppContext } from "../context/AppContext";
 import { board } from "../data/board";
@@ -7,6 +7,7 @@ import { Team } from "../interfaces";
 const Board: React.FC = (): JSX.Element => {
 	const { teams, setTeams } = useContext(AppContext);
 
+	// Increase/decrease relevant team score.
 	const updateTeamCount = (type: "inc" | "dec", team: Team) => {
 		let newTeams: Team[] = [...teams];
 		for (let i = 0; i < teams.length; i++) {
@@ -21,6 +22,7 @@ const Board: React.FC = (): JSX.Element => {
 			}
 		}
 
+		// Update context and save to local storage.
 		if (setTeams) setTeams(newTeams);
 		localStorage.setItem("30-seconds-game", JSON.stringify(newTeams));
 	};
