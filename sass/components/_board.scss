@@ -53,10 +53,9 @@
 
 			&.xl {
 				@include flexAllCol;
-				height: 10rem;
-				aspect-ratio: 1;
 				height: 8rem;
-				background: #333;
+				aspect-ratio: 1;
+				background: $grey;
 				border-radius: 1rem;
 
 				.special {
@@ -73,7 +72,7 @@
 			}
 
 			.tokens {
-				background: lighten($color: #333, $amount: 10);
+				background: lighten($color: $grey, $amount: 10);
 				position: absolute;
 				top: 50%;
 				left: 50%;
@@ -101,7 +100,7 @@
 		position: fixed;
 		top: 18%;
 		left: 94%;
-		background: lighten($color: #333, $amount: 10);
+		background: lighten($color: $grey, $amount: 10);
 		border-radius: 1rem;
 		padding: 1rem;
 		z-index: 2;
