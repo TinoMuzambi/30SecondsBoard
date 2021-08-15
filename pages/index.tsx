@@ -40,7 +40,7 @@ const Home = () => {
 			<h1 className="title">30 Seconds Game</h1>
 			<img src="/logo.png" alt="logo" className="logo" />
 
-			<h3 className="subtitle">Game Setup</h3>
+			<h2 className="subtitle">Game Setup</h2>
 			<form className="form" onSubmit={submitHandler}>
 				<div className="input-group">
 					<label htmlFor="teams" className="label">
