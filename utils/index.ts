@@ -12,3 +12,7 @@ export const isUnique = (name: string, teams: Team[]): boolean => {
 
 	return noOccurrences.length <= 1;
 };
+
+export const getRandomNumber = (): number => {
+	return Math.random() * 1000;
+};
