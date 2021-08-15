@@ -9,16 +9,17 @@ const Home = () => {
 	const [noTeams, setNoTeams] = useState(0);
 
 	const { teams } = useContext(AppContext);
+	const router = useRouter();
 
 	useEffect(() => {
+		// Reset local storage on load.
 		localStorage.removeItem("30-seconds-game");
 	}, []);
-
-	const router = useRouter();
 
 	const submitHandler: FormEventHandler<HTMLFormElement> = (e) => {
 		e.preventDefault();
 
+		// Check that teams have unique names before starting.
 		let errors = false;
 		teams.forEach((team) => {
 			if (!isUnique(team.name, teams)) errors = true;
@@ -26,6 +27,7 @@ const Home = () => {
 
 		if (errors) return alert("Please choose unique names");
 
+		// If there are already teams in context, push to board page.
 		if (teams?.length > 1) router.push("/board");
 		else
 			return alert(
