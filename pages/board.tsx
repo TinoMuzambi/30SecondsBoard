@@ -1,5 +1,7 @@
 import { useRouter } from "next/router";
 import { useContext, useEffect, useRef, useState } from "react";
+import { MdPlayCircleFilled } from "react-icons/md";
+import { RiStopCircleFill, RiRestartFill } from "react-icons/ri";
 
 import Board from "../components/Board";
 import { AppContext } from "../context/AppContext";
@@ -52,20 +54,27 @@ const BoardPage: React.FC = (): JSX.Element => {
 					<img src="/logo.png" alt="logo" className="logo" />
 					<div className="timer">
 						<h1 className="seconds">{time === 0 ? "Time's Up!" : time}</h1>
-						<button
-							className="start"
-							onClick={() => {
-								setTime(30);
-								setStart(true);
-							}}
-						>
-							{time === 30 ? "Start" : "Restart"}
-						</button>
+						<div className="buttons">
+							<button className="start" onClick={() => setStart(false)}>
+								<RiStopCircleFill className="icon" />
+							</button>
+							<button
+								className="start"
+								onClick={() => {
+									setStart(true);
+								}}
+							>
+								<MdPlayCircleFilled className="icon" />
+							</button>
+							<button className="start" onClick={() => setTime(30)}>
+								<RiRestartFill className="icon" />
+							</button>
+						</div>
 					</div>
 				</div>
 				<div className="wrapper">
 					<h1 className="title">30 Seconds Game</h1>
-					<button className="start" onClick={startNewGame}>
+					<button className="new" onClick={startNewGame}>
 						New Game
 					</button>
 				</div>
