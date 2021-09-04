@@ -66,7 +66,13 @@ const BoardPage: React.FC = (): JSX.Element => {
 							>
 								<MdPlayCircleFilled className="icon" />
 							</button>
-							<button className="start" onClick={() => setTime(30)}>
+							<button
+								className="start"
+								onClick={() => {
+									setTime(30);
+									setStart(false);
+								}}
+							>
 								<RiRestartFill className="icon" />
 							</button>
 						</div>
