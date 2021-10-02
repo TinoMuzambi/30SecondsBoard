@@ -1,0 +1,40 @@
+.leaderboard {
+	position: fixed;
+	top: 18%;
+	left: 96%;
+	background: lighten($color: $grey, $amount: 10);
+	border-radius: 1rem;
+	padding: 1rem;
+	z-index: 2;
+
+	.row {
+		display: grid;
+		grid-template-columns: 4fr 1fr 1fr 1fr;
+		gap: 1rem;
+		align-items: center;
+		justify-items: center;
+		margin: 0.3rem 0;
+
+		.name {
+			background: var(--team-colour);
+			padding: 0.5rem;
+			border-radius: 1rem;
+			max-width: 15rem;
+			word-wrap: break-word;
+		}
+	}
+
+	button {
+		background: white;
+		height: 2rem;
+		aspect-ratio: 1;
+		outline: none;
+		border: none;
+		border-radius: 50%;
+		cursor: pointer;
+
+		&:hover {
+			background: rgb(210, 210, 210);
+		}
+	}
+}
