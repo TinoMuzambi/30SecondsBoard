@@ -25,24 +25,8 @@ const BoardPage: React.FC = (): JSX.Element => {
 		return () => clearTimeout(timer);
 	}, [start, time]);
 
-	useEffect(() => {
-		// Try getting and setting teams from local storage.
-		const teamsObj = JSON.parse(
-			localStorage.getItem("30-seconds-game") as string
-		);
-		let lsTeams: Team[] = [];
-		if (teamsObj) {
-			lsTeams = teamsObj;
-			if (setTeams) setTeams(lsTeams);
-		}
-
-		if (lsTeams?.length <= 1) return startNewGame();
-		(boardRef?.current as any)?.scrollIntoView();
-	}, []);
-
-	// Remove teams from local storage, context and push to home page.
+	// Remove teams from context and push to home page.
 	const startNewGame = () => {
-		localStorage.removeItem("30-seconds-game");
 		if (setTeams) setTeams([]);
 		router.push("/");
 	};
