@@ -11,11 +11,6 @@ const Home = () => {
 	const { teams } = useContext(AppContext);
 	const router = useRouter();
 
-	useEffect(() => {
-		// Reset local storage on load.
-		localStorage.removeItem("30-seconds-game");
-	}, []);
-
 	const submitHandler: FormEventHandler<HTMLFormElement> = (e) => {
 		e.preventDefault();
 

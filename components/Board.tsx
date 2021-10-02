@@ -24,7 +24,6 @@ const Board: React.FC = (): JSX.Element => {
 
 		// Update context and save to local storage.
 		if (setTeams) setTeams(newTeams);
-		localStorage.setItem("30-seconds-game", JSON.stringify(newTeams));
 	};
 
 	return (

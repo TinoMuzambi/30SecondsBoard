@@ -10,17 +10,6 @@ const TeamComp: React.FC<TeamProps> = ({ num }): JSX.Element => {
 
 	const { teams, setTeams } = useContext(AppContext);
 
-	useEffect(() => {
-		// If there's an entry in local storage, load it into context.
-		const teamsObj = JSON.parse(
-			localStorage.getItem("30-seconds-game") as string
-		);
-		if (teamsObj) {
-			const lsTeams: Team[] = teamsObj;
-			if (setTeams) setTeams(lsTeams);
-		}
-	}, []);
-
 	// Add team to context.
 	const updateContext = (
 		name: string,
@@ -42,7 +31,6 @@ const TeamComp: React.FC<TeamProps> = ({ num }): JSX.Element => {
 
 		// Update context and store in local storage.
 		if (setTeams) setTeams(newTeams);
-		localStorage.setItem("30-seconds-game", JSON.stringify(newTeams));
 	};
 
 	return (
