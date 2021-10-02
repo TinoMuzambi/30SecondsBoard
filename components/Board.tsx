@@ -3,8 +3,10 @@ import { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 import { board } from "../data/board";
 
+import Leaderboard from "./Leaderboard";
+
 const Board: React.FC = (): JSX.Element => {
-	const { teams, setTeams } = useContext(AppContext);
+	const { teams } = useContext(AppContext);
 
 	return (
 		<section className="board">
@@ -34,6 +36,8 @@ const Board: React.FC = (): JSX.Element => {
 					</div>
 				</div>
 			))}
+
+			<Leaderboard />
 		</section>
 	);
 };
