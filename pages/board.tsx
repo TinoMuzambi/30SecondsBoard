@@ -5,7 +5,6 @@ import { RiStopCircleFill, RiRestartFill } from "react-icons/ri";
 
 import Board from "../components/Board";
 import { AppContext } from "../context/AppContext";
-import { Team } from "../interfaces";
 
 const BoardPage: React.FC = (): JSX.Element => {
 	const [time, setTime] = useState(30);
