@@ -12,3 +12,10 @@ export const isUnique = (name: string, teams: Team[]): boolean => {
 
 	return noOccurrences.length <= 1;
 };
+
+export const getTeamName = (name: string): string => {
+	const splitName = name.split(" ");
+	if (splitName.length > 1)
+		return splitName.map((char) => char.charAt(0)).join("");
+	return name[0] + name[Math.floor(name.length / 2)];
+};

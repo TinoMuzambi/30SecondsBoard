@@ -2,6 +2,7 @@ import { useContext } from "react";
 
 import { AppContext } from "../context/AppContext";
 import { board } from "../data/board";
+import { getTeamName } from "../utils";
 
 import Leaderboard from "./Leaderboard";
 
@@ -21,10 +22,7 @@ const Board: React.FC = (): JSX.Element => {
 							if (team.boardPosition === el.boardPosition)
 								return (
 									<div className="token" key={key}>
-										<span className="white">
-											{team.name[0] +
-												team.name[Math.floor(team.name.length / 2)]}
-										</span>
+										<span className="white">{getTeamName(team.name)}</span>
 										<style jsx>
 											{`
 												--team-colour: ${team.colour};
