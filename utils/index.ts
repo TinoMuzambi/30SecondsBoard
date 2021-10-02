@@ -13,6 +13,7 @@ export const isUnique = (name: string, teams: Team[]): boolean => {
 	return noOccurrences.length <= 1;
 };
 
+// Get appropriate team name based on number of words in name.
 export const getTeamName = (name: string): string => {
 	const splitName = name.split(" ");
 	if (splitName.length > 1)
