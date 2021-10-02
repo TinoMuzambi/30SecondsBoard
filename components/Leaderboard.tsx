@@ -30,7 +30,7 @@ const Leaderboard: React.FC = (): JSX.Element => {
 			{teams.map((team, key) => (
 				<div className="row" key={key}>
 					<p className="name">
-						<span className="white">{team.name}</span>
+						<span className="white block">{team.name}</span>
 						<style jsx>
 							{`
 								--team-colour: ${team.colour};

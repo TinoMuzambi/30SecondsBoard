@@ -126,5 +126,10 @@
 		background: white;
 		padding: 0.2rem;
 		color: black;
+
+		&.block {
+			border-radius: 0;
+			padding: 0;
+		}
 	}
 }
