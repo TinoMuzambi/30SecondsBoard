@@ -1,88 +1,84 @@
-import { useContext } from "react";
+import type { CSSProperties } from "react";
 
-import { AppContext } from "../context/AppContext";
-import { board } from "../data/board";
-import { Team } from "../interfaces";
+import { TRACK_POSITIONS } from "../data/board";
+import type { BoardProps } from "../interfaces";
+import { getInitials, LAST_POSITION } from "../utils";
 
-const Board: React.FC = (): JSX.Element => {
-	const { teams, setTeams } = useContext(AppContext);
+const tokenStyle = (colour: string) => ({ "--team-colour": colour } as CSSProperties);
 
-	// Increase/decrease relevant team score.
-	const updateTeamCount = (type: "inc" | "dec", team: Team) => {
-		let newTeams: Team[] = [...teams];
-		for (let i = 0; i < teams.length; i++) {
-			if (teams[i].name === team.name) {
-				if (type === "inc") {
-					if (newTeams[i].boardPosition !== 34)
-						(newTeams[i].boardPosition as number)++;
-				} else {
-					if (newTeams[i].boardPosition !== 0)
-						(newTeams[i].boardPosition as number)--;
-				}
-			}
-		}
+const Board = ({ teams, onMove }: BoardProps) => (
+  <div className="game-layout">
+    <section className="track" aria-label="Game track from start to finish">
+      {TRACK_POSITIONS.map((position) => {
+        const occupants = teams.filter((team) => team.boardPosition === position);
+        return (
+          <div
+            className={`track-cell ${position === 0 ? "start-cell" : ""} ${
+              position === LAST_POSITION ? "finish-cell" : ""
+            }`}
+            key={position}
+          >
+            <span className="cell-number">
+              {position === 0 ? "Start" : position === LAST_POSITION ? "Finish" : position}
+            </span>
+            <div className="cell-tokens">
+              {occupants.map((team) => (
+                <span
+                  className="team-token"
+                  style={tokenStyle(team.colour)}
+                  title={team.name}
+                  aria-label={`${team.name} is on space ${position}`}
+                  key={team.id}
+                >
+                  {getInitials(team.name)}
+                </span>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </section>
 
-		// Update context and save to local storage.
-		if (setTeams) setTeams(newTeams);
-		localStorage.setItem("30-seconds-game", JSON.stringify(newTeams));
-	};
-
-	return (
-		<section className="board">
-			{board.map((el, key) => (
-				<div key={key} className={`item ${el?.target ? "xl" : ""}`}>
-					{el.target && <p className="special">{el?.target}</p>}
-					{el.shown && (
-						<img src={el.image} alt="Random" className="board-image" />
-					)}
-					<div className="tokens">
-						{teams.map((team, key) => {
-							if (team.boardPosition === el.boardPosition)
-								return (
-									<div className="token" key={key}>
-										<span className="white">
-											{team.name[0] +
-												team.name[Math.floor(team.name.length / 2)]}
-										</span>
-										<style jsx>
-											{`
-												--team-colour: ${team.colour};
-											`}
-										</style>
-									</div>
-								);
-						})}
-					</div>
-				</div>
-			))}
-
-			<div className="leaderboard">
-				<h2 className="subtitle">Leaderboard</h2>
-				{teams.map((team, key) => (
-					<div className="row" key={key}>
-						<p className="name">
-							<span className="white">{team.name}</span>
-							<style jsx>
-								{`
-									--team-colour: ${team.colour};
-								`}
-							</style>
-						</p>
-						<p className="board-pos">{team.boardPosition}</p>
-						<button className="up" onClick={() => updateTeamCount("inc", team)}>
-							+1
-						</button>
-						<button
-							className="down"
-							onClick={() => updateTeamCount("dec", team)}
-						>
-							-1
-						</button>
-					</div>
-				))}
-			</div>
-		</section>
-	);
-};
+    <aside className="scoreboard" aria-labelledby="scoreboard-title">
+      <div className="scoreboard-heading">
+        <p className="section-tag">Live standings</p>
+        <h2 id="scoreboard-title">Scoreboard</h2>
+      </div>
+      <ol>
+        {[...teams]
+          .sort((left, right) => right.boardPosition - left.boardPosition)
+          .map((team) => (
+            <li key={team.id}>
+              <span className="score-token" style={tokenStyle(team.colour)}>
+                {getInitials(team.name)}
+              </span>
+              <div className="team-score-copy">
+                <strong>{team.name}</strong>
+                <span>{team.boardPosition} / {LAST_POSITION}</span>
+              </div>
+              <div className="score-actions">
+                <button
+                  type="button"
+                  onClick={() => onMove(team.id, -1)}
+                  disabled={team.boardPosition === 0}
+                  aria-label={`Move ${team.name} back one space`}
+                >
+                  −
+                </button>
+                <button
+                  type="button"
+                  onClick={() => onMove(team.id, 1)}
+                  disabled={team.boardPosition === LAST_POSITION}
+                  aria-label={`Move ${team.name} forward one space`}
+                >
+                  +
+                </button>
+              </div>
+            </li>
+          ))}
+      </ol>
+    </aside>
+  </div>
+);
 
 export default Board;

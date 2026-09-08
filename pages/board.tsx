@@ -1,78 +1,107 @@
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import Board from "../components/Board";
-import { AppContext } from "../context/AppContext";
-import { Team } from "../interfaces";
+import type { Team } from "../interfaces";
+import { clampPosition, LAST_POSITION, parseStoredTeams, TEAM_STORAGE_KEY } from "../utils";
 
-const BoardPage: React.FC = (): JSX.Element => {
-	const [time, setTime] = useState(30);
-	const [start, setStart] = useState(false);
+type TimerState = "ready" | "running" | "paused" | "done";
 
-	const { setTeams } = useContext(AppContext);
-	const boardRef = useRef(null);
-	const router = useRouter();
+const BoardPageContent = () => {
+  const [teams, setTeams] = useState<Team[]>(() =>
+    parseStoredTeams(localStorage.getItem(TEAM_STORAGE_KEY)),
+  );
+  const [seconds, setSeconds] = useState(30);
+  const [timerState, setTimerState] = useState<TimerState>("ready");
+  const router = useRouter();
 
-	useEffect(() => {
-		// Timer for 30 second countdown.
-		const timer = setTimeout(() => {
-			if (time > 0 && start) {
-				setTime(time - 1);
-			}
-		}, 1000);
-		return () => clearTimeout(timer);
-	}, [start, time]);
+  useEffect(() => {
+    if (teams.length < 2) void router.replace("/");
+  }, [router, teams.length]);
 
-	useEffect(() => {
-		// Try getting and setting teams from local storage.
-		const teamsObj = JSON.parse(
-			localStorage.getItem("30-seconds-game") as string
-		);
-		let lsTeams: Team[] = [];
-		if (teamsObj) {
-			lsTeams = teamsObj;
-			if (setTeams) setTeams(lsTeams);
-		}
+  useEffect(() => {
+    if (timerState !== "running") return;
+    const timer = window.setInterval(() => {
+      setSeconds((current) => {
+        if (current <= 1) {
+          setTimerState("done");
+          return 0;
+        }
+        return current - 1;
+      });
+    }, 1000);
+    return () => window.clearInterval(timer);
+  }, [timerState]);
 
-		if (lsTeams?.length <= 1) return startNewGame();
-		(boardRef?.current as any)?.scrollIntoView();
-	}, []);
+  useEffect(() => {
+    if (teams.length >= 2) localStorage.setItem(TEAM_STORAGE_KEY, JSON.stringify(teams));
+  }, [teams]);
 
-	// Remove teams from local storage, context and push to home page.
-	const startNewGame = () => {
-		localStorage.removeItem("30-seconds-game");
-		if (setTeams) setTeams([]);
-		router.push("/");
-	};
+  const winner = useMemo(
+    () => teams.find((team) => team.boardPosition === LAST_POSITION),
+    [teams],
+  );
 
-	return (
-		<main className="main board">
-			<header className="header" ref={boardRef}>
-				<div className="wrapper">
-					<img src="/logo.png" alt="logo" className="logo" />
-					<div className="timer">
-						<h1 className="seconds">{time === 0 ? "Time's Up!" : time}</h1>
-						<button
-							className="start"
-							onClick={() => {
-								setTime(30);
-								setStart(true);
-							}}
-						>
-							{time === 30 ? "Start" : "Restart"}
-						</button>
-					</div>
-				</div>
-				<div className="wrapper">
-					<h1 className="title">30 Seconds Game</h1>
-					<button className="start" onClick={startNewGame}>
-						New Game
-					</button>
-				</div>
-			</header>
-			<Board />
-		</main>
-	);
+  const moveTeam = (teamId: string, amount: number) => {
+    setTeams((current) =>
+      current.map((team) =>
+        team.id === teamId
+          ? { ...team, boardPosition: clampPosition(team.boardPosition + amount) }
+          : team,
+      ),
+    );
+  };
+
+  const toggleTimer = () => {
+    if (timerState === "running") {
+      setTimerState("paused");
+      return;
+    }
+    if (seconds === 0) setSeconds(30);
+    setTimerState("running");
+  };
+
+  const resetTimer = () => {
+    setSeconds(30);
+    setTimerState("ready");
+  };
+
+  const newGame = () => {
+    localStorage.removeItem(TEAM_STORAGE_KEY);
+    void router.push("/");
+  };
+
+  if (teams.length < 2) return <main className="loading-state"><p>Loading the board…</p></main>;
+
+  return (
+    <main className="board-page">
+      <header className="game-header">
+        <div className="game-title">
+          <p className="eyebrow">30 Seconds scorekeeper</p>
+          <h1>Game board</h1>
+        </div>
+        <section className={`timer timer-${timerState}`} aria-label="Round timer" aria-live="polite">
+          <span className="timer-value">{seconds}</span>
+          <div>
+            <strong>{timerState === "done" ? "Time’s up" : timerState === "running" ? "Round running" : "Round timer"}</strong>
+            <div className="timer-actions">
+              <button type="button" onClick={toggleTimer}>{timerState === "running" ? "Pause" : seconds < 30 && seconds > 0 ? "Resume" : "Start"}</button>
+              <button type="button" onClick={resetTimer}>Reset</button>
+            </div>
+          </div>
+        </section>
+        <button className="new-game" type="button" onClick={newGame}>New game</button>
+      </header>
+
+      {winner && <p className="winner-banner" role="status">🏁 {winner.name} reached the finish!</p>}
+      <Board teams={teams} onMove={moveTeam} />
+      <p className="board-note">Use the scoreboard controls after each turn. Progress is saved locally on this device.</p>
+    </main>
+  );
 };
 
-export default BoardPage;
+export default dynamic(() => Promise.resolve(BoardPageContent), {
+  ssr: false,
+  loading: () => <main className="loading-state"><p>Loading the board…</p></main>,
+});

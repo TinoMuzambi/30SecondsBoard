@@ -1,6 +1,7 @@
 {
 	"short_name": "30 Seconds",
-	"name": "30 Seconds - BYOQ.",
+	"name": "30 Seconds Board — Scorekeeper",
+	"description": "Local-first team scorekeeping and a 30-second round timer.",
 	"icons": [
 		{
 			"src": "favicon.ico",
@@ -19,8 +20,8 @@
 			"purpose": "any maskable"
 		}
 	],
-	"start_url": ".",
+	"start_url": "/",
 	"display": "standalone",
-	"theme_color": "#000000",
-	"background_color": "#ffffff"
+	"theme_color": "#11182a",
+	"background_color": "#11182a"
 }

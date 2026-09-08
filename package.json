@@ -1,33 +1,35 @@
 {
-	"name": "30secondsboard",
-	"version": "1.0.0",
-	"author": {
-		"name": "Tino Muzambi",
-		"email": "tino@tinomuzambi.com",
-		"url": "https://tinomuzambi.com"
-	},
-	"repository": {
-		"type": "github",
-		"url": "https://github.com/TinoMuzambi/30SecondsBoard"
-	},
-	"private": true,
-	"scripts": {
-		"dev": "next",
-		"build": "next build",
-		"start": "next start",
-		"type-check": "tsc"
-	},
-	"dependencies": {
-		"next": "latest",
-		"react": "^17.0.2",
-		"react-dom": "^17.0.2"
-	},
-	"devDependencies": {
-		"@types/node": "^12.12.21",
-		"@types/react": "^17.0.2",
-		"@types/react-dom": "^17.0.1",
-		"sass": "^1.37.5",
-		"typescript": "latest"
-	},
-	"license": "MIT"
+  "name": "30-seconds-board",
+  "version": "2.0.0",
+  "private": true,
+  "description": "A local-first scorekeeper and timer for the 30 Seconds party game.",
+  "author": "Tino Muzambi",
+  "license": "MIT",
+  "packageManager": "npm@11.6.0",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "next": "16.3.4",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "24.3.0",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.7",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.3.4",
+    "sass": "1.104.0",
+    "typescript": "6.0.3",
+    "vitest": "5.0.0"
+  }
 }
