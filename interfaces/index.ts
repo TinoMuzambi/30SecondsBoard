@@ -1,46 +1,32 @@
+import type { ReactNode } from "react";
+
 export interface WrapperProps {
-	children: JSX.Element | JSX.Element[];
+  children: ReactNode;
 }
 
 export interface MetaProps {
-	title?: string;
-	description?: string;
-	keywords?: string;
-	url?: string;
-	image?: string;
+  title?: string;
+  description?: string;
+  url?: string;
 }
 
-export interface TeamProps {
-	num: number;
+export interface TeamDraft {
+  name: string;
+  colour: string;
 }
 
-export interface ContextProps {
-	teams: Team[];
-	setTeams?: Function;
+export interface Team extends TeamDraft {
+  id: string;
+  boardPosition: number;
 }
 
-export interface AppProviderProps {
-	children: JSX.Element[] | JSX.Element;
+export interface TeamEditorProps {
+  index: number;
+  team: TeamDraft;
+  onChange: (index: number, team: TeamDraft) => void;
 }
 
-export interface BoardItem {
-	image?: string;
-	shown: boolean;
-	target?: "start" | "finish";
-	boardPosition?: number;
+export interface BoardProps {
+  teams: Team[];
+  onMove: (teamId: string, amount: number) => void;
 }
-
-export interface Team {
-	name: string;
-	colour: string;
-	boardPosition?: number;
-}
-
-export type State = {
-	teams: Team[];
-};
-
-export type Actions = {
-	type: "SET_TEAMS";
-	teams: Team[];
-};

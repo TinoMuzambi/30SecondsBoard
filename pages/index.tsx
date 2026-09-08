@@ -1,76 +1,84 @@
 import { useRouter } from "next/router";
-import { FormEventHandler, useContext, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 
-import Team from "../components/Team";
-import { AppContext } from "../context/AppContext";
-import { isUnique } from "../utils";
+import TeamEditor from "../components/Team";
+import type { TeamDraft } from "../interfaces";
+import { buildTeams, TEAM_STORAGE_KEY } from "../utils";
+
+const TEAM_COLOURS = ["#f5d547", "#56cfe1", "#ff6b6b", "#b9f18c", "#c8a2ff", "#ff9f43"];
+
+const createDrafts = (count: number, current: TeamDraft[] = []): TeamDraft[] =>
+  Array.from({ length: count }, (_, index) =>
+    current[index] ?? { name: "", colour: TEAM_COLOURS[index % TEAM_COLOURS.length] },
+  );
 
 const Home = () => {
-	const [noTeams, setNoTeams] = useState(0);
+  const [teamCount, setTeamCount] = useState(2);
+  const [drafts, setDrafts] = useState<TeamDraft[]>(() => createDrafts(2));
+  const [error, setError] = useState("");
+  const router = useRouter();
 
-	const { teams } = useContext(AppContext);
-	const router = useRouter();
+  const changeCount = (count: number) => {
+    setTeamCount(count);
+    setDrafts((current) => createDrafts(count, current));
+    setError("");
+  };
 
-	useEffect(() => {
-		// Reset local storage on load.
-		localStorage.removeItem("30-seconds-game");
-	}, []);
+  const updateTeam = (index: number, team: TeamDraft) => {
+    setDrafts((current) => current.map((item, itemIndex) => (itemIndex === index ? team : item)));
+    setError("");
+  };
 
-	const submitHandler: FormEventHandler<HTMLFormElement> = (e) => {
-		e.preventDefault();
+  const startGame = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    try {
+      const teams = buildTeams(drafts);
+      localStorage.setItem(TEAM_STORAGE_KEY, JSON.stringify(teams));
+      void router.push("/board");
+    } catch (caught) {
+      setError(caught instanceof Error ? caught.message : "Check the team details and try again.");
+    }
+  };
 
-		// Check that teams have unique names before starting.
-		let errors = false;
-		teams.forEach((team) => {
-			if (!isUnique(team.name, teams)) errors = true;
-		});
+  return (
+    <main className="setup-page">
+      <header className="setup-hero">
+        <p className="eyebrow">Unofficial game companion</p>
+        <h1>Keep score.<br />Keep talking.</h1>
+        <p>Set up your teams, start the 30-second round timer, and move tokens around a shared board. Game state stays on this device.</p>
+      </header>
 
-		if (errors) return alert("Please choose unique names");
+      <form className="setup-panel" onSubmit={startGame}>
+        <div className="panel-heading">
+          <div><p className="section-tag">01 / Setup</p><h2>Build the teams</h2></div>
+          <label htmlFor="team-count">
+            Teams
+            <select
+              id="team-count"
+              value={teamCount}
+              onChange={(event) => changeCount(Number(event.target.value))}
+            >
+              {[2, 3, 4, 5, 6].map((count) => <option key={count}>{count}</option>)}
+            </select>
+          </label>
+        </div>
 
-		// If there are already teams in context, push to board page.
-		if (teams?.length > 1) router.push("/board");
-		else
-			return alert(
-				"Please create at least two uniquely named teams before starting the game."
-			);
-	};
+        <div className="team-grid">
+          {drafts.map((team, index) => (
+            <TeamEditor key={index} index={index} team={team} onChange={updateTeam} />
+          ))}
+        </div>
 
-	return (
-		<main className="main home">
-			<h1 className="title">30 Seconds Game</h1>
-			<img src="/logo.png" alt="logo" className="logo" />
+        {error && <p className="form-error" role="alert">{error}</p>}
+        <button className="primary-action" type="submit">Start the game <span aria-hidden="true">→</span></button>
+      </form>
 
-			<h2 className="subtitle">Game Setup</h2>
-			<form className="form" onSubmit={submitHandler}>
-				<div className="input-group">
-					<label htmlFor="teams" className="label">
-						How many teams are playing?
-					</label>
-					<div className="flex">
-						<input
-							type="range"
-							className="input"
-							id="teams"
-							min={2}
-							max={10}
-							value={noTeams}
-							onChange={(e) => setNoTeams(Number.parseInt(e.target.value))}
-							onWheel={(e) => e.currentTarget.blur()}
-						/>
-						<label className="label">{noTeams}</label>
-					</div>
-				</div>
-				{[...Array(noTeams)].map((_, key) => (
-					<div className="team" key={key}>
-						<Team num={key} />
-					</div>
-				))}
-				<div className="input-group">
-					<input type="submit" value="Start Game" className="submit" />
-				</div>
-			</form>
-		</main>
-	);
+      <footer className="setup-footer">
+        <p>Bring your own cards. This tool only handles the timer and score.</p>
+        <a href="https://github.com/TinoMuzambi/30SecondsBoard" rel="noreferrer">View source ↗</a>
+      </footer>
+    </main>
+  );
 };
 
 export default Home;
